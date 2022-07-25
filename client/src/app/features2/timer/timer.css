@@ -1,0 +1,98 @@
+.aggt {
+    width: 40px!important;
+    height: 40px;
+    border-radius: 50%!important;
+   
+    border: none!important;
+    margin: 0.5vh;
+  
+}.reloj-fut{
+    height: 100%;
+}.reloj-fut-grid {
+    display: grid;
+    grid-template-rows: 20% 55% 25%;
+    height: 100%;
+    background-color: whitesmoke;
+    border: solid 15px white;
+    border-radius: 15%;
+}.botones-reloj{
+  
+        align-self: center;
+        justify-items: center;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    
+}.crono{
+    text-align: center;
+    width: 50%;
+}
+h5{
+    font-size:  1.6em!important;
+}span.time {
+    font-size: 60px;
+}button.boton-tiempo {
+    
+    
+    border-radius: 3vw;
+    background-color: white;
+    border: solid 1px green;
+}button.boton-tiempo-2{
+    margin-right: 2vw;
+    border-radius: 3vw;
+    background-color: white;
+    border: solid 1px green;
+}.reloj-fut-grid-2 {
+    display: grid;
+    grid-template-rows: 20% 55% 25%;
+    height: 100%;
+    border-radius: 15%;
+    
+}.crono-2 {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}.botones-reloj-2 {
+    align-self: center;
+    justify-items: center;
+    margin: auto;
+}.botones-re-ini-pau-2{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}.reloj-tiempos {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: 100%;
+}.reloj-tiempo {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    background-color: whitesmoke;
+    
+    border-radius: 5vh;
+}
+.tiempo-selec {
+    display: grid;
+    align-content: center;
+}.puntos-bask{
+    display: grid;
+grid-template-columns: 40% 20% 40%;
+background-color: whitesmoke;
+border: solid 12px white;
+border-radius: 40px;
+}span.crono {
+	font-size: 40px;
+	display: grid;
+	justify-content: center;
+}.bg-orange{
+
+    background-color: #fb9246!important;
+}.border-orange{
+
+    border: solid 1px #fb9246!important;
+}.bg-green{
+
+    background-color: #219a1b;
+}.border-green{
+
+    border: solid 1px #219a1b;
+}

@@ -1,0 +1,68 @@
+.scoreboard-basket {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 20% 70% 10%;
+}.top-pagina {
+    background-color: #ffc107;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}.contenido-basket {
+    display: grid;
+    grid-template-rows: 30% 70%;
+}.logo-equipos {
+    height: 100px;
+    width: 100px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    margin: auto;
+}.card-header-bask {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    height: 100%;
+}form.equipos-basket {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}svg.balon {
+    height: 100%;
+    width: 100%;
+}.pagina-ajustes {
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.fouls {
+    display: grid;
+    grid-template-columns: 42% 16% 42%;
+    width: 100vw;
+}.basket-text{
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    font-size: 40px;
+}.pagina-foul {
+    display: grid;
+
+}.pagina-puntos {
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.pag_2 {
+    border: solid 12px white;
+    background-color: whitesmoke;
+    border-radius: 5vh;
+}.reloj-tiempo {
+    display: grid;
+    grid-template-columns: 45% 55%;
+}.puntos-bask {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+}.reset {
+	display: grid;
+	padding: 50% 0 150% 0;
+}.equipos-basket2{
+    display :grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+align-content: center;
+}

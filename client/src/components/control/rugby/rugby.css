@@ -1,0 +1,47 @@
+.scoreboardrugby{
+    display:grid;
+    grid-template-rows: 20% 70% 10%;
+    height: 100%;
+    width: 100%;
+}.scoreboard-rugby {
+    display: grid;
+    grid-template-rows: 30% 70%;
+}.rugpage1 {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.logo-equipo{
+    width: 120px;
+    height: 120px;
+    background: whitesmoke;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    border-radius: 50%;
+}.equiposrug {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    height: 100%;
+    justify-content: center;
+}form.scoreboardform-rugby {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}.equipo{
+    display: flex;
+    border: solid 1px;
+}.rugpage2 {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}.scoreboard-puntos-rugby {
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 3vh;
+}.puntos-rugby {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    height: 100%;
+}.card-header-rugby {
+    display: grid;
+    justify-content: center;
+    padding: 10% 0 140% 0;
+}

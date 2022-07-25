@@ -1,0 +1,145 @@
+.aggt {
+    width: 40px!important;
+    height: 40px;
+    border-radius: 50%!important;
+  
+    border: none!important;
+    margin: 0.5vh;
+  
+}.reloj-fut{
+    height: 100%;
+}.reloj-fut-grid {
+    display: grid;
+    grid-template-rows: 10% 55% 35%;
+    height: 100%;
+    background-color: whitesmoke;
+    border: solid 15px white;
+    border-radius: 15%;
+}.botones-reloj{
+  
+        align-self: center;
+        justify-items: center;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+         width:100%;
+}.crono{
+    text-align: center;
+    width: 50%;
+}
+h5{
+    font-size:  1.5em!important;
+}span.time {
+    font-size: 60px;
+}button.boton-tiempo {
+    
+    
+    border-radius: 3vw;
+    background-color: white;
+    border: solid 1px green;
+}button.boton-tiempo-2{
+    margin-right: 2vw;
+    border-radius: 3vw;
+    background-color: white;
+    border: solid 1px green;
+}.reloj-fut-grid-2 {
+    display: grid;
+    grid-template-rows: 20% 55% 25%;
+    height: 100%;
+    border-radius: 15%;
+    
+}.crono-2 {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}.botones-reloj-2 {
+    align-self: center;
+    justify-items: center;
+    margin: auto;
+}.botones-re-ini-pau-2{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.reloj-fut-crono {
+	display: grid;
+	grid-template-rows: 50% 50%;
+}.reloj-fut-crono {
+	display: grid;
+	grid-template-rows: 50% 50%;
+    justify-content: center;
+}.bg-orange{
+
+    background-color: #fb9246!important;
+}.border-orange{
+
+    border: solid 1px #fb9246!important;
+}.bg-green{
+
+    background-color: #219a1b;
+}.border-green{
+
+    border: solid 1px #219a1b;
+}.reloj-fut-sin{
+
+	height: 100%;
+	display: grid;
+	
+}.reloj-fut-grid-sin {
+	display: grid;
+	grid-template-rows: 20% 55% 25%;
+	height: 100%;
+	background-color: whitesmoke;
+	border: solid 15px white;
+	border-radius: 15%;
+	width: 100%;
+	text-align: center;
+}.crono-sin {
+	text-align: center;
+	width: 100%;
+}.botones-reloj-sin {
+	
+	display: grid;
+	justify-content: center;
+	width: 100%;
+	margin: auto;
+}.extratime {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 33% 33% 33%;
+}.duracion{
+    display:grid;
+    grid-template-rows: 30% 70%;
+    height: 100%;
+}.timersinbotones{
+   background:whitesmoke;
+   border:solid 12px white;
+   border-radius: 3vh;
+}.time-titulo {
+    font-size: 22px;
+    text-align: center;
+    align-self: end;
+}.cronometro {
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.titulocrono {
+    width: 50%;
+    justify-content: center;
+    display: grid;
+    align-items: flex-end;
+}.botones-reloj-crono {
+    align-self: center;
+    justify-items: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+}.btns-crono {
+    gap: 10%;
+    width: 160px;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    height: 40px;
+    justify-content: center;
+    align-self: center;
+}

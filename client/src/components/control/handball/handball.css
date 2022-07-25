@@ -1,0 +1,58 @@
+.scoreboard-handball {
+    display: grid;
+    grid-template-rows: 20% 70% 10%;
+    height: 100%;
+    width: 100%;
+}.formhandball {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    height: 100%;
+}.ajuste-handball {
+    height: 100%;
+}.hanball-ajustes {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+}.periodo {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: whitesmoke;
+}.displayinfo {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 5vh;
+}.handballPuntos {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    height: 100%;
+}.handball-puntos {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 3vh;
+}.handballbo {
+    display: grid;
+    justify-self: center;
+    padding: 10% 0 150% 0;
+    
+}.handball-fouls{
+    display:grid;
+    grid-template-rows: 40% 60%;
+    height: 100%;
+   
+}.handballfoul{
+    display:grid;
+    grid-template-columns: 40% 20% 40%;
+    background-color: whitesmoke;
+    border:solid 12px white;
+    border-radius:3vh;
+}.handballbo2 {
+    display: grid;
+    justify-self: center;
+    padding: 10% 0 200% 0;
+}.card-body-rug {
+    text-align: center;
+}

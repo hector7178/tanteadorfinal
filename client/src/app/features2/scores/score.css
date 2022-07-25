@@ -1,0 +1,41 @@
+.card-body-goles {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    justify-items: center;
+}span.goles-con {
+    font-size: 50px;
+}.botones-goles {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}button.boton-goles-cir {
+    width: 80%;
+    height: 70%;
+    border-radius: 50%;
+   
+    border: solid green;
+}.score2 {
+	display: grid;
+	grid-template-rows: 15% 85%;
+}.card-body-score {
+	display: grid;
+	grid-template-rows: 40% 60%;
+	justify-self: center;
+}.puntos-equipos {
+	justify-content: center;
+	align-content: center;
+	display: grid;
+	font-size: 40px;
+}.botones-puntos {
+	justify-content: center;
+	align-content: center;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	gap: 3px;
+}.boton-score-circl {
+	border-radius: 50%;
+	border: solid 1px #ffc107;
+    width: 40px;
+    height: 40px;
+}

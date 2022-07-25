@@ -1,0 +1,278 @@
+.pagina-ajustes-te {
+    display: grid;
+    grid-template-rows: 25% 10% 25% 40%;
+    height: 100%;
+    width: 100%;
+}form.jugadores-t {
+    
+    height: 100%;
+    width:100%;
+    grid-template-columns: 50% 50%;
+    display:grid;
+    justify-items: center;
+    align-content: center;
+
+}.scoreboard-tennis {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-rows: 20% 70% 10%;
+}.tennis {
+    
+    height: 100%;
+}svg.svg-tennis {
+    width: 150%;
+    height: 155%;
+    max-width: 600px;
+    position: absolute;
+    top: -39%;
+}.top-tennis {
+    background-color: #fb9246;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}.titulos-tennis{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    z-index: 1;
+    font-size: 50px;
+    bottom: 10%;
+}.cantidad-sets{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border: solid 11px white;
+    background-color: whitesmoke;
+    border-radius: 3vh;
+
+}td.sp {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #ffa500;
+}tr.set-col {
+    display: grid;
+    grid-template-columns:  17% 16% 16% 16% 16% 16% ;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+}tbody.jugadores-set {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    padding:1vh;
+}thead.botton-set {
+    display: grid;
+    width: 100vw;
+    height: 100%;
+    align-content: center;
+    background-color: whitesmoke;
+}.tennis-sets {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    height: 100%;
+}tr.jugador-1{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    justify-items: center;
+
+} .jugador-2  { 
+    display: grid;
+    grid-template-columns: 40% 60%;
+    justify-items: center;
+}.bg-orange{
+    background:#ffa500;
+    border:none;
+}.botton-set-list {
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px 0px 10px;
+}th.sets {
+    display:grid;
+    
+}button.buttonsets.rounded-pill {
+    border: solid #fb9246;
+    width: 95%;
+    height: 90%;
+    background-color: white;
+}h1.t-set {
+    font-size: 18px;
+}.set-control{
+    display:grid;
+    grid-template-columns: 40% 20% 40%;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    
+}.del-aggset{
+    width: 40px;
+    height: 40px;
+    border: solid #fb9246 2px ;
+    border-radius:50%;
+    background-color: white;
+    font-size: 22px;
+}.nset{
+    font-size: 30px;
+
+}.numero-de-set{
+    display:grid;
+    grid-template-rows: 30% 70%;
+    align-items: center;
+}.titulo-set{
+    font-size: 22px;
+    justify-self: center;
+    align-self: center;
+}.partido-select{
+    display:grid;
+    grid-template-columns: 50% 50%;
+    width: 95%;
+    gap: 5px;
+}.partido{
+   
+    border:solid 2px #fb9246;
+    background-color: white;
+    font-size:19px;
+}.single-par {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    align-items: center;
+}button.buttonsets.rounded-pill:hover{
+    background-color: #fb9246;
+    color: white;
+}.tp-set{
+    display:grid;
+    grid-template-rows: 60% 40%;
+    height: 80%;
+}.f-p{
+    font-size: 14px;
+}.k{
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+ } th.set-col {
+     display: grid;
+     grid-template-columns: 16% 16% 16% 16% 16% 16%;
+     width: 100%;
+   
+} .card-headerpages2-tennis {
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.bt{ 
+    border: solid !important;
+    background-color: whitesmoke;  
+}.t{
+    border-radius: 1vh 1vh 0 0;
+}.b{
+    border-radius: 0 0 1vh 1vh;
+}.nombres {
+    border: solid 1px;
+}.set-score {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 3vh;
+
+}.scoreboard-page2-tennis {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 35% 30% 35%;
+
+   
+}.setactualizacion {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    border: solid 12px white;
+    background-color: whitesmoke;
+    
+    height: 100%;
+    border-radius: 3vh;
+
+}.e {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    align-items: center;
+}.score-buttons {
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100%;
+    width: 100%;
+    
+}.btn-w {
+    width: 45px!important;
+    height: 45px !important;
+}.btn-g{
+    width: 60px!important;
+    height: 60px !important;
+}.countscore{
+    justify-self: center;
+    font-size: 50px;
+}.botonreset{
+    display: grid;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+}.card-headerpages2-tennis {
+    display: grid;
+    grid-template-rows: 40% 60%;
+}.setbotton {
+    height: 75%;
+    width: 95%;
+    background-color: whitesmoke;
+    margin: auto;
+}.nombres-segundap {
+    text-align: center;
+    align-content: center;
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    font-size: 30px;
+}.button.button-reset {
+    background-color: red;
+    border: none;
+    color: white;
+}.scoreboard-3pag-tenis {
+    display: grid;
+    grid-template-rows: 55% 45%;
+    height: 100%;
+}.card-headerpages3-tennis {
+    display: grid;
+    grid-template-rows: 26% 33% 33%;
+}tbody.jugadores-set-3 {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    border: solid 12px white;
+    background-color: whitesmoke;
+    border-radius: 3vh;
+}.set-score-3 {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 3vh;
+}button.button-reset {
+    background: red;
+    color: white;
+    border: none;
+}.tiebreak {
+    height: 100%;
+    display: grid;
+}.cantidadDeSet {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-content: center;
+}.cantidadSet{
+    display:grid;
+    grid-template-rows: 30% 70%;
+    border:solid 12px white;
+    background-color: whitesmoke;
+    border-radius: 3vh;
+}.tennis-sets-3 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}

@@ -1,0 +1,62 @@
+.home-container {
+    height: 90vh;
+    margin: 1em;
+}.row{
+    --bs-gutter-x:0!important;
+}
+
+.sport-card {
+    
+    background: rgb(160, 57, 195);
+    color: white;
+    border-radius: 1.5em;
+    overflow: hidden;
+
+}.menu{
+    background: rgb(160, 57, 195);
+    height: 20%;
+}
+.deportes{
+    background: white;
+    height: 70%;
+}.footer{
+    background: rgb(228, 225, 225);
+    height: 10%;
+
+}.inicio{
+    height: 100vh;
+    min-width: 100vw;
+  
+}.i{
+    height: 100%;
+    width: 100%;
+    
+}.titulo{
+ display: grid;
+ align-content: center;
+ justify-content: center;
+ color:white;
+}@media (min-width: 992px) {.row-cols-lg-5 > * {
+	
+	max-width: 0vw;
+}}.col{
+    margin-right: 4px;
+    margin-left: 4px;
+    
+}.justify{
+    padding: 1em;
+    justify-content: center;
+}@media all and (orientation: landscape) {
+
+ } h3  { 
+    margin-block-start: 1em;
+    font-size: calc(1rem )!important;
+}.absolute{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    height: 25px;
+}.rela{
+    position: absolute;
+}

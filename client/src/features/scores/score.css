@@ -1,0 +1,21 @@
+.card-body-goles {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    justify-items: center;
+}span.goles-con {
+    font-size: 50px;
+}.botones-goles {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}button.boton-goles-cir {
+    width: 80%;
+    height: 70%;
+    border-radius: 50%;
+   
+    border: solid green;
+}.btn-w{
+    width:45px!important;
+    height: 45px!important;
+}

@@ -1,0 +1,95 @@
+.pagina-futbol {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 20% 70% 10%;
+}.top {
+    background-color: #198754;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+}.contenido {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 30% 70%;
+}.navegacion {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    background-color: #e9e9e9;
+}.equipos {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 2vw;
+}.card-equipo-panel {
+    justify-content: center;
+    display: grid;
+}.foto-equipos {
+    width: 100px;
+    height: 100px;
+    background: whitesmoke;
+    border-radius: 50%;
+    justify-self: center;
+}.scoreboard-tiempo {
+    display: grid;
+    grid-template-rows: 40% 60%;
+    height: 100%;
+}.seleccion-equipos{
+    border:solid 1px;
+}.scoreboard-goles {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    border: solid 12px white;
+    border-radius: 10vw;
+    background-color: whitesmoke;
+}.goles {
+    display: grid;
+    grid-template-rows: 20% 80%;
+    height: 100%;
+}.panel-goles {
+    display: grid;
+    grid-template-rows: 40% 60%;
+    height: 100%;
+}h5.text-center.center.titulos {
+    align-self: center;
+}button.botton-reset {
+    height: 35%;
+    border-radius: 3vh;
+    font-size: 20px;
+    border: solid #dc3545;
+    width: 65%;
+    background-color: red;
+    color: white;
+    margin: auto;
+    margin-top: 10%;
+}.tiempo-ext-panel-2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border: solid 8px white;
+    background-color: whitesmoke;
+    border-radius:3vh;
+}.scoreboard-card-penales{
+    height: 100%;
+    display: grid;
+    grid-template-rows:50% 50%;
+}.penales{
+    display:grid;
+    grid-template-columns: 38% 24% 38%;
+    background-color: whitesmoke;
+    border: solid 12px white;
+    border-radius: 5vh;
+}button.botton-reset-p {
+    width: 100%;
+    border-radius: 1vh;
+    background-color: red;
+    color: white;
+    border: none;
+}.timer-extra{
+display: grid;
+grid-template-columns: 60% 40%;
+width: 100%;
+background-color: whitesmoke;
+border:solid 12px white;
+border-radius: 3vh;
+}
