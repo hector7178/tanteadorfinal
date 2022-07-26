@@ -186,12 +186,12 @@ const [modalShow, setModalShow] = useState(false);
                             </tbody>
                         </table>
                     </div>
-                    <form className="jugadores-t">
+                    <form className="jugadores-t form-group">
                     <div className="jugador1">
                         <div className="name">
                             <input
                                 type="name"
-                                className="nombres"
+                                className="nombres form-control"
                                 placeholder={team1}
                                 value={team1}
                                 id="team1"
@@ -203,7 +203,7 @@ const [modalShow, setModalShow] = useState(false);
                         <div className="name">
                             <input
                                 type="text"
-                                className="nombres"
+                                className="nombres form-control"
                                 placeholder={team2}
                                 value={team2}
                                 id="team2"
@@ -230,7 +230,7 @@ const [modalShow, setModalShow] = useState(false);
                         </div>
                     </div>
                 </div>
-                <Timer color='orange' control ascending />
+                <Timer color='orange' start='d-flex justify-content-start' control ascending />
                 </div>:page==='2'?
 
 <div className="scoreboard-page2-tennis">
@@ -244,7 +244,7 @@ const [modalShow, setModalShow] = useState(false);
            </div>
         </button></th>))}
  </tr></div> 
-<div className='nombres-segundap'><h1>{team1}</h1><h1>|</h1><h1>{team2}</h1></div>
+<div className='nombres-segundap'><h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1></div>
 </div>
                 <div className="setactualizacion">
                             <ScoreCard
@@ -346,7 +346,7 @@ const [modalShow, setModalShow] = useState(false);
                                 </tr>
                             </tbody>
                     <div className='nombres-segundap'>
-                    <h1>{team1}</h1><h1>|</h1><h1>{team2}</h1>
+                    <h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1>
                     </div>
                     </div>
 
@@ -477,7 +477,7 @@ const [modalShow, setModalShow] = useState(false);
 
                 
             </div>
-            <div className='navegacion'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}/><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}/><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}/><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}/></div>
+            <div className='navegacion-bas'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}/><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}/><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}/><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}/></div>
         </div>
     );
 }

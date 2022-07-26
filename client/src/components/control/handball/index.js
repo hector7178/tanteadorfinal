@@ -89,14 +89,14 @@ export default function HandballControl() {
                 </div>
       <div className="formhandball">
 
-      <form className="scoreboardform-rugby">
+      <form className="scoreboardform-rugby form-group">
           <div className="equiposrug">
             <div className='logo-equipo'>
             </div>
             <div className="card-body-rug">
               {page==='1'?<input
                 type="text"
-                className="equipo"
+                className="equipo form-control"
                 placeholder={team1}
                 value={team1}
                 id="team1"
@@ -112,7 +112,7 @@ export default function HandballControl() {
             <div className="card-body-rug">
               {page==='1'?<input
                 type="text"
-                className="equipo"
+                className="equipo  form-control"
                 placeholder={team2}
                 value={team2}
                 id="team2"
@@ -185,14 +185,14 @@ export default function HandballControl() {
          
             
             <div className="handballfoul">
-              <InfoCard
+          <div className= 'foulscount'><InfoCard
               title="Local"
               info={homeFouls}
               incrementInfo={incrementHomeFouls}
               decrementInfo={decrementHomeFouls}
               color='primary'
               p2
-            /><div className='handballbo2'>
+            /></div><div className='handballbo2'>
             <h5 className="handballfoul-titulo">Fouls</h5>
             <button
               type="button"
@@ -202,14 +202,14 @@ export default function HandballControl() {
               Reset
             </button>
             </div>
-            <InfoCard
+            <div className='foulscount'><InfoCard
               p2
               title="Visitante"
               info={awayFouls}
               incrementInfo={incrementAwayFouls}
               decrementInfo={decrementAwayFouls}
               color='primary'
-            />
+            /></div>
           </div>
           
             </div>

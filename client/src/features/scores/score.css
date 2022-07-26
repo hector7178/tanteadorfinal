@@ -18,4 +18,20 @@
 }.btn-w{
     width:45px!important;
     height: 45px!important;
+   
+}@media screen and (max-height:700px){
+    span.goles-con {
+        font-size: 30px!important;
+    }
+    button.buttonsets {
+       
+        height: 80%!important;
+    }.scoreboard-page2-tennis {
+        height: 100%;
+        display: grid;
+        grid-template-rows: 30% 35% 35%;
+    }.btn-w {
+        width: 40px!important;
+        height: 40px!important;
+    }
 }

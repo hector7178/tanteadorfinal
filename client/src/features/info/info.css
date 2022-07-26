@@ -62,4 +62,9 @@ grid-template-columns: 33% 33% 33%;
     background-color: whitesmoke;
     border: solid 12px white;
     border-radius: 5vh;
+}@media screen and (max-height:700px){
+	.reloj {
+       
+       padding: 0!important; 
+    }
 }

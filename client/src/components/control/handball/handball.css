@@ -55,4 +55,23 @@
     padding: 10% 0 200% 0;
 }.card-body-rug {
     text-align: center;
+}    .foulscount {
+    height: 100%;
+
+   
+}@media screen and (max-height:700px){
+    .formhandball {
+        display: grid;
+        grid-template-rows: 35% 65%;
+        height: 100%;
+    }.handballPuntos {
+        display: grid;
+        grid-template-rows: 40% 60%;
+        height: 100%;
+    
+    }.foulscount {
+        height: 70%;
+        justify-content: center;
+        display: grid;
+    }
 }

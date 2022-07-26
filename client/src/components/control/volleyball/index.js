@@ -174,12 +174,12 @@ console.log(selset)
                             </tbody>
                         </table>
                     </div>
-                    <form className="jugadores-t">
+                    <form className="jugadores-t form-group">
                     <div className="jugador1">
                         <div className="name">
                             <input
                                 type="name"
-                                className="nombres"
+                                className="nombres form-control"
                                 placeholder={team1}
                                 value={team1}
                                 id="team1"
@@ -191,7 +191,7 @@ console.log(selset)
                         <div className="name">
                             <input
                                 type="text"
-                                className="nombres"
+                                className="nombres form-control"
                                 placeholder={team2}
                                 value={team2}
                                 id="team2"
@@ -212,7 +212,7 @@ console.log(selset)
                     </div>
                     
                 </div>
-                <Timer color='primary' control ascending />
+                <Timer color='primary' start='d-flex justify-content-start' control ascending />
                 </div>:page==='2'?
 
 <div className="scoreboard-page2-tennis">
@@ -226,7 +226,7 @@ console.log(selset)
            </div>
         </button></th>))}
  </tr></div> 
-<div className='nombres-segundap'><h1>{team1}</h1><h1>|</h1><h1>{team2}</h1></div>
+<div className='nombres-segundap'><h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1></div>
 </div>
                 <div className="setactualizacion">
                             <ScoreCard

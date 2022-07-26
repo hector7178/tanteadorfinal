@@ -126,7 +126,15 @@ export const scoreSlice = createSlice({
         },
         updateTieBreakScore: (state, action) => {
             const [points, player] = action.payload;
-            giveTieBreakScore(state, points, player);
+             
+            if(state.homeTieBreakScore >= 0 && state.awayTieBreakScore >= 0){
+                giveTieBreakScore(state, points, player);
+            }
+            if (state.homeTieBreakScore===-1||state.awayTieBreakScore===-1){
+                state.homeTieBreakScore=0
+                state.awayTieBreakScore=0
+            }
+           
         },
         updateTennisScore: (state, action) => {
             const [points, player,setIndex] = action.payload;
@@ -330,10 +338,11 @@ export const scoreSlice = createSlice({
 
 
 function giveTieBreakScore(state, points, player) {
-    let next = player === 'home' ?
-        state.homeTieBreakScore + 1
+    
+    let next = player === 'home'?
+        state.homeTieBreakScore + points
         :
-        state.awayTieBreakScore + 1;
+        state.awayTieBreakScore + points
 
     let otherScore = player === 'home' ?
         state.awayTieBreakScore
@@ -361,9 +370,9 @@ function giveTieBreakScore(state, points, player) {
         state.isTieBreak = false;
     } else {
         player === 'home' ?
-            state.homeTieBreakScore += 1
+            state.homeTieBreakScore += points
             :
-            state.awayTieBreakScore += 1;
+            state.awayTieBreakScore += points;
     }
 }
 

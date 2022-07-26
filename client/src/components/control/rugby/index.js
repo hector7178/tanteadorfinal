@@ -27,6 +27,7 @@ import '../styles/ScoreBoard.scss';
 import { resetTime, updateInitialTime } from '../../../features/timer/timerSlice';
 import Ajustes from '../football/footballsvg/ajustes';
 import PelotaRugby from './rugbysvg';
+import Equipo from '../football/equipos'
 import './rugby.css';
 
 export default function RugbyControl() {
@@ -69,21 +70,21 @@ export default function RugbyControl() {
        <div className='topvol bg-success'>
                     <BasicExample color='success' scoreboardId={scoreboardId}/>
                     <PelotaRugby fill='#37a572' className='svg-top'/>
-                    <h1 className='titulotop'>Volleyball</h1>
+                    <h1 className='titulotop'>Rugby</h1>
                     <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
                     dispatch(resetInfo());
                     dispatch(resetAll());
                     dispatch(resetTime());}:null}>Reset </button>
                 </div>
       <div className="scoreboard-rugby">
-<form className="scoreboardform-rugby">
+<form className="scoreboardform-rugby form-group">
           <div className="equiposrug">
             <div className='logo-equipo'>
             </div>
             <div className="card-body-rug">
               {page==='1'?<input
                 type="text"
-                className="equipo"
+                className="equipo form-control"
                 placeholder={team1}
                 value={team1}
                 id="team1"
@@ -99,7 +100,7 @@ export default function RugbyControl() {
             <div className="card-body-rug">
               {page==='1'?<input
                 type="text"
-                className="equipo"
+                className="equipo form-control"
                 placeholder={team2}
                 value={team2}
                 id="team2"
@@ -114,6 +115,7 @@ export default function RugbyControl() {
             info={period}
             incrementInfo={incrementPeriod}
             decrementInfo={decrementPeriod}
+            color='success'
           />
           <Timer color='success' start='justify-content-start d-flex' control ascending/>
           
@@ -129,6 +131,7 @@ export default function RugbyControl() {
               points={[-2, -3,-5, 2, 3, 5]}
               player={'home'}
               color='success'
+              ba={true}
             />
             <div className="card-header-rugby">
             <h5 className="titulos-rug text-center rounded-pill">Puntos</h5>
@@ -147,6 +150,7 @@ export default function RugbyControl() {
               points={[-2, -3, -5, 2, 3, 5]}
               player={'away'}
               color='success'
+              ba={true}
             />
           </div>
         </div>

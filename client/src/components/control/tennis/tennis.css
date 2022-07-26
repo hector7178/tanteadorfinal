@@ -275,4 +275,52 @@
 }.tennis-sets-3 {
     display: grid;
     grid-template-columns: 50% 50%;
+}.navegacion-bas {
+    background-color: white;
+    background-color: whitesmoke;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-items: center;
+}.name-player{
+    font-size: 0.9em;
+    
+}@media screen and (max-height:700px){
+    .titulo-set {
+        font-size: 1.2em;
+        justify-self: center;
+        align-self: center;
+    }.b {
+        border-radius: 0 0 1vh 1vh;
+        border-top: none !important;
+    }.t {
+        border-radius: 1vh 1vh 0 0;
+        border-bottom: none!important;
+    }h1.t-set {
+        font-size: 1em;
+    
+    }.card-headerpages2-tennis {
+        display: grid;
+        grid-template-rows: 50% 50%;
+    }.name-player {
+        font-size: 0.6em;
+        justify-items: center;
+        align-content: center;
+        display: grid;
+        
+    }.set-score-3 {
+        display: grid;
+        grid-template-rows: 10% 50%!important;
+        
+    }.tennis-sets-3 {
+        display: grid;
+        grid-template-columns: 45% 45% !important;
+        justify-content: center;
+       
+    }.nombres {
+        border: solid 1px;
+        height: 5vh;
+    }.btn-g {
+        width: 45px!important;
+        height: 45px !important;
+    }
 }

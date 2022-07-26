@@ -11,8 +11,8 @@
     display: grid;
     grid-template-rows: 40% 60%;
 }.logo-equipo{
-    width: 120px;
-    height: 120px;
+    width: 15vh;
+    height: 15vh;
     background: whitesmoke;
     display: flex;
     justify-self: center;
@@ -29,6 +29,7 @@
 }.equipo{
     display: flex;
     border: solid 1px;
+    height: 6vh;
 }.rugpage2 {
     display: grid;
     grid-template-rows: 50% 50%;
@@ -44,4 +45,14 @@
     display: grid;
     justify-content: center;
     padding: 10% 0 140% 0;
+    
+}@media screen and ( max-width:700px){
+    .equiposrug {
+        
+        grid-template-rows: 75% 25%;
+        
+    }.scoreboard-rugby {
+        display: grid;
+        grid-template-rows: 35% 65%;
+    }
 }

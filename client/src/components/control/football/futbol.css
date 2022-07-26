@@ -36,7 +36,7 @@
     grid-template-rows: 40% 60%;
     height: 100%;
 }.seleccion-equipos{
-    border:solid 1px;
+   height: 5vh ;
 }.scoreboard-goles {
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -92,4 +92,12 @@ width: 100%;
 background-color: whitesmoke;
 border:solid 12px white;
 border-radius: 3vh;
+}@media screen and (max-height:600px){
+    .contenido {
+        grid-template-rows: 35% 65%;
+    }button.botton-reset {
+        height: 40%;
+        font-size: 16px;
+        width: 60%;
+    }
 }

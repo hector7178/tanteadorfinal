@@ -56,4 +56,9 @@ grid-template-columns: 33% 33% 33%;
     border: solid green;
     font-size: 22px;
     color: green;
+}@media screen and (max-height:700px){
+	.reloj {
+       
+       padding: 0!important; 
+    }
 }

@@ -28,7 +28,7 @@
     width: 50%;
 }
 h5{
-    font-size:  1.5em!important;
+    font-size:  1.6em!important;
 }span.time {
     font-size: 60px;
 }button.boton-tiempo {
@@ -142,4 +142,24 @@ h5{
     height: 40px;
     justify-content: center;
     align-self: center;
+}@media screen and (max-height:700px){
+    span.time {
+        font-size: 40px!important;
+    }button.boton-tiempo-2 {
+        margin-right: 2vw;
+        border-radius: 3vw;
+        background-color: white;
+        border: solid 1px green;
+        font-size: 0.75em;
+    }span.crono {
+        font-size: 30px!important;
+        display: grid;
+        justify-content: center;
+    }.reloj-fut-grid-2 {
+        
+        height: 80%!important;
+       
+    }h5{
+        font-size:  1.3em!important;
+    }
 }

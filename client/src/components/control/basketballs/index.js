@@ -37,6 +37,7 @@ import  './basketball.css'
 import BasicExample from '../navbar'
 import Timer2 from '../../../app/features2/timer/Timer'
 import ScoreCard2 from '../../../app/features2/scores/ScoreCard'
+import Equipos from '../football/equipos';
 export default function BasketballControl() {
   const dispatch = useDispatch();
 
@@ -84,34 +85,7 @@ export default function BasketballControl() {
        <BasicExample  color='warning' scoreboardId={scoreboardId}/>
       </div>
       <div className="contenido-basket">
-        {pages==='1'?<form className="equipos-basket">
-          <div className="equipo-a">
-            <div className="card-header-bask">
-              <div className='logo-equipos'></div>
-              <input
-                type="text"
-                className="input-equipo"
-                placeholder={team1}
-                value={team1}
-                id="team1"
-                aria-label="Team1"
-                onChange={inputChanged} />
-            </div>
-          </div>
-          <div className="equipo-b">
-            <div className="card-header-bask">
-              <div className="logo-equipos"></div>
-              <input
-                type="text"
-                className="input-equipo"
-                placeholder={team2}
-                value={team2}
-                id="team2"
-                aria-label="Team2"
-                onChange={inputChanged} />
-            </div>
-          </div>
-        </form>:<div className='equipos-basket2 text-center'><div ClassNAme='equipo-a'><div className="logo-equipos"></div>{team1}</div><div className="equipo-b"><div className="logo-equipos"></div>{team2}</div></div>}
+        {pages==='1'?<Equipos team1={team1} page={pages} team2={team2} inputChanged={inputChanged} />:<div className='equipos-basket2 text-center'><div ClassNAme='equipo-a'><div className="logo-equipos"></div>{team1}</div><div className="equipo-b"><div className="logo-equipos"></div>{team2}</div></div>}
 
        { pages==='1'?
         <div className="pagina-ajustes">
@@ -155,11 +129,13 @@ export default function BasketballControl() {
             updateScore={updateScore}
             points={[+1, +2,+3,-1,-2,-3]}
             player={'home'}
+            ba={true}
           />
-           <div className='reset'><h5 className="col-sm-12 col-md-12 text-center">Puntos</h5>
+           <div className='botonreset'>
+            <h5 className="col-sm-12 col-md-12 text-center">Puntos</h5>
           <button
             type="button"
-            className="btn-sm col-xs-2 col-md-1 rounded-pill btn btn-danger"
+            className=" rounded-pill button-reset "
             onClick={() => dispatch(resetScores())}
           >
             Reset
@@ -170,6 +146,7 @@ export default function BasketballControl() {
             updateScore={updateScore}
             points={[+1, +2,+3,-1,-2,-3]}
             player={'away'}
+            ba={true}
           />
         </div>
       </div>

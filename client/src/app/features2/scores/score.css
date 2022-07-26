@@ -2,8 +2,7 @@
     display: grid;
     grid-template-rows: 60% 40%;
     justify-items: center;
-}span.goles-con {
-    font-size: 50px;
+
 }.botones-goles {
     width: 100%;
     display: grid;
@@ -38,4 +37,37 @@
 	border: solid 1px #ffc107;
     width: 40px;
     height: 40px;
+}.w-pe{
+		height: 40px;
+		width: 40px;
+	
+	
+}@media screen and (max-height:700px){
+	.w-pe{
+		height: 32px!important;
+		width: 32px!important;
+	}.card-body-score {
+		
+		grid-template-rows: 30% 60%;
+		
+	}.score2 {
+    display: grid;
+    grid-template-rows: 15% 85%;
+    height: 85%;
+	}.reloj-fut-grid {
+   
+    border: solid 9px white;
+    
+	}.scoreboard-puntos-rugby {
+		background-color: whitesmoke;
+		border: solid 7px white;
+		border-radius: 3vh;
+	}.puntos-equipos {
+		
+		font-size: 30px;
+	}.card-body-goles {
+		display: grid;
+		grid-template-rows: 40% 40%;
+		justify-items: center;
+	}
 }

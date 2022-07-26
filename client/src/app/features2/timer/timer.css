@@ -29,8 +29,7 @@
 }
 h5{
     font-size:  1.6em!important;
-}span.time {
-    font-size: 60px;
+
 }button.boton-tiempo {
     
     
@@ -95,4 +94,27 @@ border-radius: 40px;
 }.border-green{
 
     border: solid 1px #219a1b;
+}@media screen and (max-height:700px){
+    span.time {
+        font-size: 40px!important;
+    }button.boton-tiempo-2 {
+        margin-right: 2vw;
+        border-radius: 3vw;
+        background-color: white;
+        border: solid 1px green;
+        font-size: 0.75em;
+    }span.crono {
+        font-size: 30px!important;
+        display: grid;
+        justify-content: center;
+    }.reloj-fut-grid-2 {
+        
+        height: 80%!important;
+       
+    }h5{
+        font-size:  1.3em!important;
+    }.cronometro {
+        display: grid;
+        grid-template-rows: 30% 60%;
+    }
 }

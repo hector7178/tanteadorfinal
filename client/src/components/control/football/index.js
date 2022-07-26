@@ -109,7 +109,7 @@ export default function FootballControl() {
               halfTime={halfTime}
               />
             
-              <Timer color='success'  info={period} control ascending />
+              <Timer color='success' start='d-flex justify-content-start' info={period} control ascending />
             
          
             </div>
@@ -164,7 +164,7 @@ export default function FootballControl() {
                   </Timer>
                 <InfoCard  p2 
                 color='success'
-                title="Tiempo Extra "
+                title="T. Extra "
                 info={extraTime}
                 incrementInfo={incrementExtraTime}
                 decrementInfo={decrementExtraTime}
