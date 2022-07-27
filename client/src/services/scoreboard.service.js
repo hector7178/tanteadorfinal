@@ -1,5 +1,8 @@
 import axios from 'axios';
-const api = 'http://localhost:8080';
+import config from "../config";
+
+// const api = 'http://localhost:8080';
+const api = config.urlApi;
 
 export async function createScoreBoard(data) {
     data.date = new Date();

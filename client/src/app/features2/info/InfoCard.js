@@ -21,7 +21,7 @@ export default function InfoCard2({
       {
         title ?
           <div className="cardheader">
-            <h5 ClassName='titulos' >{title}</h5>
+            <h5 className='titulos' >{title}</h5>
           </div>
           : null
       }

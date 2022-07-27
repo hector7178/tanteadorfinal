@@ -9,11 +9,14 @@ import RugbyShow from '../components/show/RugbyShow';
 import HandballShow from '../components/show/HandballShow';
 import VolleyballShow from '../components/show/VolleyballShow';
 import HockeyShow from '../components/show/HockeyShow';
+import config from "../config";
 
 import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
 import './styles/share.scss';
-const api = 'http://localhost:8080';
+// const api = 'http://localhost:8080';
+// const api = 'http://18.231.181.224:8080/';
+const api = config.urlApi;
 const socket = io(api);
 
 export default function Share() {
