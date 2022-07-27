@@ -15,9 +15,10 @@ export default function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" exact element={<Home/>} />
+                    
                     <Route path="/scoreboard/:sport" exact element={<Sports/>} />
-                     <Route path="/share/:scoreboardId" exact element={<Share/>} />
+                    <Route path="/share/:scoreboardId" exact element={<Share/>} />
+                    <Route path="/" exact element={<Home/>} />
                   <Route path="*" exact element={<NotFound/>} />
                 </Routes>
             </BrowserRouter>
