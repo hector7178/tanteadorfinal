@@ -29,9 +29,11 @@ import {
   resetScores,
   resetAll,
 } from '../../../features/scores/scoreSlice';
+import {setTimerActive} from '../../../features/timer/timerSlice';
 import useControl from '../useControl';
 import ScoreCard from '../../../features/scores/ScoreCard';
 import InfoCard from '../../../features/info/InfoCard';
+import InfoCard2 from '../../../features/info/InfoCardf';
 import Timer from '../../../features/timer/Timer';
 import BasicExample from '../navbar';
 import Equipos from './equipos';
@@ -76,6 +78,7 @@ export default function FootballControl() {
       dispatch(resetInfo())
       dispatch(resetAll())
       dispatch(resetTime())
+      dispatch(setTimerActive(false))
     }
   }, [])
   const [pages, setPages]= useState('1' )
@@ -87,21 +90,30 @@ export default function FootballControl() {
   return (
     <div className='pagina-futbol'>
       
-      <div className='top position-relative'>< BasicExample color='success' scoreboardId={scoreboardId}/><Balon color='#23a96b' className='svg'/><h1 className='texto'>Futbol</h1></div>
+      <div className='top position-relative overflow-hidden'>
+        < BasicExample color='verde'  titulo='Futbol' SvgTop={<Balon color='#69c16f'  className='svg svg-nav position-absolute'/>} scoreboardId={scoreboardId}/>
+        <Balon color='#69c16f' className='svg position-absolute'/>
+        <h1 className='texto'>Futbol</h1>
+        <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
+                    dispatch(resetInfo());
+                    dispatch(resetAll());
+                    dispatch(resetTime());
+                    dispatch(setTimerActive(false));}:null}>Reset </button>
+                    </div>
       <div className='contenido'>
         
           {pages==='1'?<Equipos team1={team1} page={pages} team2={team2} inputChanged={inputChanged} />:<div className='equipos'>
               <div className="card-equipo-panel text-center">
-               <div className='foto-equipo'></div>{team1}</div>
-               <div className="card-equipo-panel text-center">
-               <div className='foto-equipo'></div>{team2}</div>
+                {team1}<div className='foto-equipo'>Logo Equipos</div></div>
+               <div className="card-equipo-panel borderleft text-center">
+               {team2}<div className='foto-equipo '>Logo Equipos</div></div>
             </div>
           }<div className={pages==='1'?"scoreboard-card-futbol":"scoreboard-card-futbol-2 "}>
 
             {pages==='1'?
             <div className="scoreboard-tiempo">
               <InfoCard
-              color='success'
+              color='verde'
               title="Tiempo"
               info={period}
               incrementInfo={incrementPeriod}
@@ -109,7 +121,7 @@ export default function FootballControl() {
               halfTime={halfTime}
               />
             
-              <Timer color='success' start='d-flex justify-content-start' info={period} control ascending />
+              <Timer color='verde' start='d-flex justify-content-start' info={period} control ascending />
             
          
             </div>
@@ -117,13 +129,13 @@ export default function FootballControl() {
             <div className='panel-goles'>
             <div className='tiempo-ext-panel-2'>
               <InfoCard  p2 
-              color='success'
+              color='verde'
               title="T. Extra "
               info={extraTime}
               incrementInfo={incrementExtraTime}
               decrementInfo={decrementExtraTime}
               extraTime/>
-              <Timer color='success' p2 control ascending sinbotones/>
+              <Timer color='verde' p2 control ascending sinbotones/>
               </div>
             <div className="scoreboard-goles">
                 
@@ -136,13 +148,15 @@ export default function FootballControl() {
                 updateScore={updateScore}
                 points={[-1, 1]}
                 player={'home'}
+                color='verde'
+                crono='goles-con'
               />
-              <div className="panel-goles">
-                  <h5 className="text-center center titulos">Goles</h5>
+              <div className="penales-panel">
+                  <h5 className="text-center text-sub">Goles</h5>
                   <button
                     type="button"
-                    className="botton-reset"
-                    onClick={() => dispatch(resetScores())}>Reset</button>
+                    className="botton-reset-p"
+                    onClick={()=> window.confirm('seguro?')?() => dispatch(resetScores()):null}>Reset</button>
                 </div>
               <ScoreCard
               className='goles'
@@ -150,6 +164,8 @@ export default function FootballControl() {
                 updateScore={updateScore}
                 points={[-1, 1]}
                 player={'away'}
+                color='verde'
+                crono='goles-con'
               />
            
           </div>
@@ -160,10 +176,10 @@ export default function FootballControl() {
 
               :pages==='3'?
               <div className="scoreboard-card-penales">
-                <div className='timer-extra'><Timer control ascending sinbotones>
+                <div className='timer-extra'><Timer control color='verde' ascending sinbotones>
                   </Timer>
                 <InfoCard  p2 
-                color='success'
+                color='verde'
                 title="T. Extra "
                 info={extraTime}
                 incrementInfo={incrementExtraTime}
@@ -171,9 +187,9 @@ export default function FootballControl() {
                 extraTime/>
                 </div>
               <div className="penales">
-                <InfoCard p2
-                color='success'
-                  title="Local"
+                <InfoCard2 p2
+                color='verde'
+                  
                   info={homeFouls}
                   incrementInfo={incrementHomeFouls}
                   decrementInfo={decrementHomeFouls}
@@ -185,14 +201,15 @@ export default function FootballControl() {
                 <button
                   type="button"
                   className="botton-reset-p"
-                  onClick={() => dispatch(resetFouls())}
+                  onClick={()=> window.confirm('seguro?')?() => dispatch(resetFouls()):null}
                 >
                   Reset
                 </button>
                 </div>
-                <InfoCard p2
-                  color='success'
-                  title="Visitante"
+                <InfoCard2 
+                  p2
+                  color='verde'
+                 
                   info={awayFouls}
                   incrementInfo={incrementAwayFouls}
                   decrementInfo={decrementAwayFouls}
@@ -204,7 +221,7 @@ export default function FootballControl() {
     </div>
    
       
-      <div className='navegacion' ><Ajustes color={pages==='1'?'#58b358':'#8a8a8b'} onClick={handlepage}/><Balon color={pages==='2'?'#58b358':'#8a8a8b'} onClick={handlegoles}/><Penales color={pages==='3'?'#58b358':'#8a8a8b'} onClick={handlepenales}/></div>
+      <div className='navegacion' ><Ajustes color={pages==='1'?'#24b524':'#8a8a8b'} onClick={handlepage}>Ajustes</Ajustes><Balon color={pages==='2'?'#24b524':'#8a8a8b'} onClick={handlegoles}>Goles</Balon><Penales  color={pages==='3'?'#24b524':'#8a8a8b'} onClick={handlepenales}>Penales</Penales></div>
     </div>
   );
 }

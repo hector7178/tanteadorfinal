@@ -1,0 +1,6 @@
+.ajustes.d-grid {
+
+    grid-template-rows: 60% 40%;
+    color: darkgray;
+    justify-items: center;
+}

@@ -10,8 +10,9 @@
     align-self: self-end;
     
 }.cardbody {
-    
-    width: 100%;
+    width: 70%;
+    justify-self: center;
+   
     height: 100%;
 }.reloj {
     
@@ -21,7 +22,7 @@
     grid-template-columns: 33% 33% 33%;
     width: 100%;
     height: 100%;
-    padding: 4vw;
+   
 }button.buttonMasMenos {
     height: 40px;
     width: 40px;
@@ -29,13 +30,17 @@
     max-height: 100px;
     max-width: 100px;
     border: solid green;
-    font-size: 20px;
     color: green;
+    display:grid;
+    justify-content:center;
+    align-content:center;
     
 }span.tiempo_f {
     font-size: 40px;
 }h5.titulos {
-    font-size: 2em !important;
+    
+    margin: 0;
+   
 }span.crono {
     font-size: 40px;
 }.infocard-2 {
@@ -48,23 +53,70 @@ align-items: center;
 display: grid;
 grid-template-columns: 33% 33% 33%;
 }button.buttonMasMenos-2 {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
     max-height: 100px;
     max-width: 100px;
     border: solid green;
-    font-size: 22px;
-    color: green;
+    display: grid;
+    justify-content:center;
 }.displayinfo {
     display: grid;
     grid-template-columns: 60% 40%;
     background-color: whitesmoke;
     border: solid 12px white;
     border-radius: 5vh;
+}.bg-verde{
+    background-color:#39af42!important;
+
+}.border-verde{  
+    border: solid 2px #39af42 !important;
+}.text-verde{
+    color:  #39af42;
+}.containerinfo{ 
+height:100%
+
+
+}span.crono-infoextra {
+    font-size: 50px;
+    justify-content: center;
+    display: grid;
+}.info-btn {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}.infoExtra {
+    display: grid;
+    align-items: center;
+    height: 100%;
+}@media screen and (max-height:600px){
+    span.crono-infoextra {
+    font-size: 45px;
+    justify-content: center;
+    display: grid;
+    }
 }@media screen and (max-height:700px){
 	.reloj {
        
        padding: 0!important; 
+    }button.buttonMasMenos-2 {
+        height: 35px;
+        width: 35px;
+    }h5.titulos {
+        font-size: 1.3em ;
+    }
+}@media screen and (min-height:800px){
+	
+    span.crono-infoextra {
+    font-size: 50px;
+    justify-content: center;
+    display: grid;
+    }
+    button.buttonMasMenos-2 {
+        height: 45px;
+        width: 45px;
+    }h5 {
+        font-size: 1.8em!important ;
     }
 }

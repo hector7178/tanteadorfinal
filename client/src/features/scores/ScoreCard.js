@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { updateServer } from './scoreSlice';
-import './score.css'
+import './score.css';
+import {Plus, Dash} from 'react-bootstrap-icons';
 
 export default function ScoreCard(
   {
@@ -14,7 +15,8 @@ export default function ScoreCard(
     tennis,
     color,
     actualizar,
-    set
+    set,
+    crono
   }) {
    
    
@@ -23,9 +25,11 @@ export default function ScoreCard(
   
  
   const pointButton = (point, index) => (
-    <button key={index} type="button" className={`boton-goles-cir btn-w bg-white border-${color}`}
+    <button key={index} type="button" className={`boton-goles-cir ${index<2?`bg-${color} text-white`:'bg-white'} btn-w  border-${color}`}
       onClick={()=>dispatch(updateScore([point, player,set]))}>
       {
+        
+        
         (point > 0 && !tennis) ?
           `+${point}`
           :
@@ -58,7 +62,7 @@ const a=[-1,1];
       {
         updateScore ?
           <div className="card-body-goles">
-            <span className="goles-con">
+            <span className={crono}>
               {
                 advantage === undefined ? score
                   : advantage === "" ? score
@@ -67,7 +71,13 @@ const a=[-1,1];
             </span>
             <div className="botones-goles">
               {
-                points.map((point, index) => pointButton(point, index))
+               points.length===2?
+               <>
+               <button  type="button" className={`boton-goles-cir text-${color} d-flex justify-content-center btn-w bg-white border-${color}`} onClick={()=>dispatch(updateScore([points[0], player,set]))}><Dash width="100%" height="100%"/></button>
+                <button  type="button" className={`boton-goles-cir d-flex justify-content-center btn-w bg-${color} border-${color}`}onClick={()=>dispatch(updateScore([points[1], player,set]))}><Plus fill='#ffffff' width="100%" height="100%"/></button>
+               </>
+               :
+               points.map((point, index) => pointButton(point, index))
               }
             </div>
           </div>

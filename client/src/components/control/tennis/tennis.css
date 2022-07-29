@@ -259,6 +259,11 @@
     background: red;
     color: white;
     border: none;
+    max-width: 50px;
+    max-height: 25px;
+    display: flex;
+    justify-self: center;
+    align-self: start;
 }.tiebreak {
     height: 100%;
     display: grid;
@@ -276,14 +281,48 @@
     display: grid;
     grid-template-columns: 50% 50%;
 }.navegacion-bas {
-    background-color: white;
     background-color: whitesmoke;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    display: flex;
     justify-items: center;
+    gap: 2.5em;
+    justify-content: center;
 }.name-player{
     font-size: 0.9em;
     
+}.nav-btns.nav-link{
+    width: 243px;
+    display: grid!important;
+    align-items: center;
+    grid-template-columns: 25% 75%;
+    justify-items: baseline;
+    font-size: 1.4em;
+}.bg-verde{
+    background-color:#39af42!important;
+
+}.border-verde{  
+    border: solid 2px #39af42 !important;
+}.text-verde{
+    color:  #39af42;
+}.zind {
+    z-index:3;
+}.navsvg{
+    display: grid;
+    justify-self: center;
+}svg.svgNav {
+    position: absolute;
+    height: 10vh;
+    z-index: 4;
+    left: 1vw;
+    bottom: 1vh;
+}h1.nav-titulo {
+    display: grid;
+    text-align: center;
+    left: 40%;
+    top: 70%;
+}
+svg.svg.svg-nav {
+    top: -55%;
+    right: 3%;
 }@media screen and (max-height:700px){
     .titulo-set {
         font-size: 1.2em;
@@ -322,5 +361,9 @@
     }.btn-g {
         width: 45px!important;
         height: 45px !important;
+    }.nav-btns{
+        width: 180px!important;
+        display: grid!important;
+        font-size:1.1em!important;
     }
 }

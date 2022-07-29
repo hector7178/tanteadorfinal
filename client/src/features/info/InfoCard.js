@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { setShowExtraTime } from './infoSlice';
-import './info.css'
+import './info.css';
+import {Plus, Dash} from 'react-bootstrap-icons';
 
 export default function InfoCard({
   title,
@@ -18,7 +19,7 @@ export default function InfoCard({
  
  
   return (
-    <div className={h===true?'displayinfo':null}>
+    <div className={h===true?'displayinfo':'containerinfo'}>
       <div >
         {children}
       </div>
@@ -39,9 +40,9 @@ export default function InfoCard({
         incrementInfo && decrementInfo ?
           <div className="cardbody d-grid align-items-center">
             <div className={p2?"reloj-2":"reloj"}>
-              <button type="button" className={p2?`buttonMasMenos-2 font-weight-bold text-white border-${color} bg-${color}`:`buttonMasMenos font-weight-bold bg-white  text-${color} border-2 border-${color}`} onClick={() => dispatch(decrementInfo())}>-</button>
+              <button type="button" className={`buttonMasMenos-2 border-${color} text-${color}`} onClick={() => dispatch(decrementInfo())}><Dash width="100%" height="100%"/></button>
               <span className="crono">{info}</span>
-              <button type="button" className={p2?`buttonMasMenos-2 d-grid align-items-center font-weight-bold border-2 text-white bg-${color} border-${color}`:`buttonMasMenos font-weight-bold bg-${color}  text-white border-2 border-${color}`} onClick={() => dispatch(incrementInfo())}>+</button>
+              <button type="button" className={`buttonMasMenos-2 d-grid align-items-center textwhite  bg-${color} border-${color}`} onClick={() => dispatch(incrementInfo())}> <Plus fill='#ffffff' width="100%" height="100%"/></button>
             </div>
 
           {

@@ -256,6 +256,7 @@ const [modalShow, setModalShow] = useState(false);
                                 color='orange'
                                 set={Set.length}
                                 actualizar={updateScoreMenos}
+                                crono='goles-con'
                                 />
                             <div className='botonreset'>
                                 <h5 className="acore-tit">Games</h5>
@@ -276,6 +277,7 @@ const [modalShow, setModalShow] = useState(false);
                                 player='away'
                                 color='orange'
                                 set={Set.length}
+                                crono='goles-con'
                             />
                 </div>
 <div className="set-score">
@@ -373,6 +375,7 @@ const [modalShow, setModalShow] = useState(false);
                                 points={[-1,+1]}
                                 set={Set.length}
                                 color='orange'
+                                crono='goles-con'
                             />
                            
                             <ScoreCard
@@ -385,6 +388,7 @@ const [modalShow, setModalShow] = useState(false);
                                 tennis
                                 set={Set.length}
                                 color='orange'
+                                crono='goles-con'
                             /></div>
 
                         </div>
@@ -453,6 +457,7 @@ const [modalShow, setModalShow] = useState(false);
                         points={[-1, 1]}
                         player={'home'}
                         color='orange'
+                        crono='goles-con'
                     />
                     <div className="botonreset">
                     <h5 className="acore-tit">TieBreak</h5>
@@ -472,12 +477,13 @@ const [modalShow, setModalShow] = useState(false);
                         points={[-1, 1]}
                         player={'away'}
                         color='orange'
+                        crono='goles-con'
                     />
                 </div></div>:'' }
 
                 
             </div>
-            <div className='navegacion-bas'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}/><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}/><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}/><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}/></div>
+            <div className='navegacion-bas'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}>Game</Tennis><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}>Sets Total</Svg3page><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}>Tiebreak</Silbato></div>
         </div>
     );
 }

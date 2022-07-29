@@ -31,7 +31,7 @@ export default function Home() {
           <div className="p-3 border  text-center sport-card" onClick={() => history('/scoreboard/' + sport)}>
             <div className="absolute">
               <h3 style={{zIndex:'1'}}className='rela'>{sport}</h3>
-             <div> {key===0?<Balon fill='#bc7ad3' className='rela'/>:key===1?<Dribbble height='65px' width='65px'  fill='#bc7ad3' className='rela'/>:key===2?<Tennis fill='#bc7ad3' className='rela'/>:key===3?<PelotaRugby fill='#bc7ad3' className='rela'/>:key===4?<Balon fill='#bc7ad3' className='rela'/>:key===5?<PelotaVol fill='#bc7ad3'className='rela'/>:key===6?<HockeySvg fill='#bc7ad3'className='rela'/>:null}</div>
+             <div> {key===0?<Balon fill='#bc7ad3' className='homesvg'/>:key===1?<Dribbble  className='homesvg' height='65px' width='65px'  fill='#bc7ad3' />:key===2?<Tennis fill='#bc7ad3' className='homesvg'/>:key===3?<PelotaRugby fill='#bc7ad3'  className='homesvg'/>:key===4?<Balon fill='#bc7ad3' className='homesvg'/>:key===5?<PelotaVol fill='#bc7ad3'  className='homesvg'/>:key===6?<HockeySvg fill='#bc7ad3' className='homesvg'/>:null}</div>
             </div>
           </div>
         </div>

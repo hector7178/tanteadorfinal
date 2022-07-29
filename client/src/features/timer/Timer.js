@@ -65,12 +65,12 @@ export default function Timer({
             <div className={p2?"botones-reloj-2":sinbotones?"botones-reloj-sin":"botones-reloj"}>
             <span className="time" >{padNumber(minutes)}:{padNumber(seconds)}</span>
             {children}
-             {sinbotones?'' : <div className='botones'><button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`} onClick={() => dispatch(decrementSeconds(60))}>-60</button>
-              <button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`} onClick={() => dispatch(decrementSeconds(10))}>-10</button>
-              <button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`}onClick={() => dispatch(decrementSeconds(1))}>-1</button>
-              <button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`} onClick={() => dispatch(incrementSeconds(60))}>+60</button>
-              <button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`} onClick={() => dispatch(incrementSeconds(10))}>+10</button>
-              <button type="button" className={`btn aggt btn-primary btn-sm btn-time bg-${color}`} onClick={() => dispatch(incrementSeconds(1))}>+1</button>
+             {sinbotones?'' : <div className='botones'><button type="button" className={`btn aggt text-white  btn-sm btn-time bg-${color}`} onClick={() => dispatch(decrementSeconds(60))}>+60</button>
+              <button type="button" className={`btn aggt text-white btn-sm btn-time bg-${color}`} onClick={() => dispatch(decrementSeconds(10))}>+10</button>
+              <button type="button" className={`btn aggt text-white  btn-sm btn-time bg-${color}`}onClick={() => dispatch(decrementSeconds(1))}>+1</button>
+              <button type="button" className={`btn aggt btn-sm btn-time border-${color}`} onClick={() => dispatch(incrementSeconds(60))}>-60</button>
+              <button type="button" className={`btn aggt btn-sm btn-time border-${color}`} onClick={() => dispatch(incrementSeconds(10))}>-10</button>
+              <button type="button" className={`btn aggt btn-sm btn-time border-${color}`} onClick={() => dispatch(incrementSeconds(1))}>-1</button>
               </div>}
             </div>
             
@@ -91,7 +91,7 @@ export default function Timer({
                 dispatch(setTimerActive(true));
                 half();}} >Iniciar</button>
               <button type="button" className={`boton-tiempo-2 border-${color}`} onClick={() => dispatch(setTimerActive(false))} >Pausa</button>
-              <button type="button" className={`boton-tiempo-2 border-${color}`} onClick={() => {
+              <button type="button" className={`boton-tiempo-2 bg-danger text-white border-danger`} onClick={() => {
                 dispatch(resetTime());dispatch(setTimerActive(false));
               }} >Reset</button>
             </div>

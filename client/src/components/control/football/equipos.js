@@ -6,7 +6,7 @@ export default function equipos(props){
 return(
     <div className='equipos form-group' >
             <div className="card-equipo-panel">
-               <div className='foto-equipo'></div> 
+               <div className='foto-equipo'>Logo equipo</div> 
               <input
                 type="text"
                 className="seleccion-equipos form-control"
@@ -18,8 +18,8 @@ return(
             </div>
           
        
-            <div className="card-equipo-panel" >
-              <div className='foto-equipo' ></div> 
+            <div className="card-equipo-panel " >
+              <div className='foto-equipo' >Logo equipo</div> 
               <input
                 type="text"
                 className="seleccion-equipos form-control"

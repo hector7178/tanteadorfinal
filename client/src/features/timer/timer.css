@@ -2,8 +2,6 @@
     width: 40px!important;
     height: 40px;
     border-radius: 50%!important;
-  
-    border: none!important;
     margin: 0.5vh;
   
 }.reloj-fut{
@@ -23,6 +21,9 @@
         display: grid;
         grid-template-columns: 50% 50%;
          width:100%;
+}button.btn-crono {
+    height: 100%;
+    width: 100%;
 }.crono{
     text-align: center;
     width: 50%;
@@ -142,6 +143,13 @@ h5{
     height: 40px;
     justify-content: center;
     align-self: center;
+}.bg-verde{
+    background-color:#39af42!important;
+
+}.border-verde{  
+    border: solid 1px #39af42 !important;
+}.text-verde{
+    color:  #39af42;
 }@media screen and (max-height:700px){
     span.time {
         font-size: 40px!important;
@@ -150,7 +158,7 @@ h5{
         border-radius: 3vw;
         background-color: white;
         border: solid 1px green;
-        font-size: 0.75em;
+        font-size: 0.60em;
     }span.crono {
         font-size: 30px!important;
         display: grid;
@@ -161,5 +169,8 @@ h5{
        
     }h5{
         font-size:  1.3em!important;
-    }
+    }button.btn-crono {
+        height: 30px;
+        width: 60px; 
+    } 
 }

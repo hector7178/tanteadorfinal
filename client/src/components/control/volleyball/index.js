@@ -237,7 +237,7 @@ console.log(selset)
                                 player='home'
                                 color='primary'
                                 set={Set.length}
-                                
+                                crono='goles-con'
                                 />
                             <div className='botonreset'>
                                 <h5 className="acore-tit">Games</h5>
@@ -258,6 +258,7 @@ console.log(selset)
                                 player='away'
                                 color='primary'
                                 set={Set.length}
+                                crono='goles-con'
                             />
                 </div>
 <div className="set-score">
@@ -270,6 +271,7 @@ console.log(selset)
         server={server === 'home'}
         set={Set.length}
         color='primary'
+        crono='goles-con'
     />
     <div className='botonreset'>
         <h5 className="acore-tit">Puntos</h5>
@@ -289,10 +291,11 @@ console.log(selset)
         server={server === 'away'}
         set={Set.length}
         color='primary'
+        crono='goles-con'
     />
 </div>
 </div>:null}
-<div className='navegacion'><Ajustes color={page==='1'?'#0d6efd':'#8a8a8b'} onClick={pagina1}/><PelotaVol fill={page==='2'?'#0d6efd':'#8a8a8b'} onClick={pagina2}/></div>
+<div className='navegacion'><Ajustes color={page==='1'?'#0d6efd':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes><PelotaVol fill={page==='2'?'#0d6efd':'#8a8a8b'} onClick={pagina2}>Puntos</PelotaVol> </div>
 
 
             </div>

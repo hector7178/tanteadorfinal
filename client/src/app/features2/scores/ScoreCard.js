@@ -16,7 +16,7 @@ export default function ScoreCard2(
   }) {
   const dispatch = useDispatch();
   const pointButton = (point, index) => (
-    <button key={index} type="button" className={`boton-score-circl ${ba===true?'w-pe':null} border-${color} bg-white`}
+    <button key={index} type="button" className={`boton-score-circl ${ba===true?'w-pe':null} border-${color} ${index<3?`bg-${color} text-white`:'bg-white'}`}
       onClick={() => dispatch(updateScore([point, player]))}>
       {
         (point > 0 && !tennis) ?

@@ -3,7 +3,7 @@
     grid-template-rows: 60% 40%;
     justify-items: center;
 }span.goles-con {
-    font-size: 50px;
+    font-size: 55px;
 }.botones-goles {
     width: 100%;
     display: grid;
@@ -18,10 +18,20 @@
 }.btn-w{
     width:45px!important;
     height: 45px!important;
+}.bg-verde{
+    background-color:#39af42!important;
+
+}.border-verde{  
+    border: solid 1px #39af42 !important;
+}.text-verde{
+    color:  #39af42;
    
 }@media screen and (max-height:700px){
     span.goles-con {
-        font-size: 30px!important;
+        font-size: 40px!important;
+        text-align: center;
+        display: grid;
+        align-content: center;
     }
     button.buttonsets {
        

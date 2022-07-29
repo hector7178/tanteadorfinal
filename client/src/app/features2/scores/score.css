@@ -3,6 +3,12 @@
     grid-template-rows: 60% 40%;
     justify-items: center;
 
+}@media screen and (min-height:780px){
+
+	.puntos-equipos {
+		
+		font-size: 50px!important;
+	}
 }.botones-goles {
     width: 100%;
     display: grid;
@@ -63,9 +69,10 @@
 		border: solid 7px white;
 		border-radius: 3vh;
 	}.puntos-equipos {
-		
-		font-size: 30px;
-	}.card-body-goles {
+		font-size: 42px;
+		margin-bottom: 1vh;
+	}
+	.card-body-goles {
 		display: grid;
 		grid-template-rows: 40% 40%;
 		justify-items: center;

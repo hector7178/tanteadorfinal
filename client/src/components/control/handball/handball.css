@@ -5,7 +5,7 @@
     width: 100%;
 }.formhandball {
     display: grid;
-    grid-template-rows: 30% 70%;
+    grid-template-rows: 35% 65%;
     height: 100%;
 }.ajuste-handball {
     height: 100%;
@@ -27,6 +27,8 @@
     display: grid;
     grid-template-rows: 50% 50%;
     height: 100%;
+
+
 }.handball-puntos {
     display: grid;
     grid-template-columns: 40% 20% 40%;

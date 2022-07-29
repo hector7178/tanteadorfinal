@@ -4,10 +4,13 @@
     display: grid;
     grid-template-rows: 20% 70% 10%;
 }.top {
-    background-color: #198754;
+    background-color: #39af42;
     justify-content: center;
     display: flex;
     overflow: hidden;
+}h5.text-sub {
+    display: grid;
+    justify-content: center;
 }.contenido {
     height: 100%;
     display: grid;
@@ -25,12 +28,15 @@
 }.card-equipo-panel {
     justify-content: center;
     display: grid;
+}.borderleft{   
+    border-left: solid 2px #e1dede!important;
 }.foto-equipos {
     width: 100px;
     height: 100px;
     background: whitesmoke;
     border-radius: 50%;
     justify-self: center;
+    display:grid;
 }.scoreboard-tiempo {
     display: grid;
     grid-template-rows: 40% 60%;
@@ -39,7 +45,7 @@
    height: 5vh ;
 }.scoreboard-goles {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 37% 26% 37%;
     border: solid 12px white;
     border-radius: 10vw;
     background-color: whitesmoke;
@@ -49,7 +55,7 @@
     height: 100%;
 }.panel-goles {
     display: grid;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 45% 55%;
     height: 100%;
 }h5.text-center.center.titulos {
     align-self: center;
@@ -92,7 +98,15 @@ width: 100%;
 background-color: whitesmoke;
 border:solid 12px white;
 border-radius: 3vh;
-}@media screen and (max-height:600px){
+}.bg-verde{
+    background-color:#39af42!important;
+
+}.border-verde{  
+    border: solid 2px #39af42 !important;
+}.text-verde{
+    color:  #39af42;
+
+}@media screen and (max-height:700px){
     .contenido {
         grid-template-rows: 35% 65%;
     }button.botton-reset {

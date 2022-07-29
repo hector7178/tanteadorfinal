@@ -17,7 +17,7 @@ import {
   resetScores,
   resetAll,
 } from '../../../features/scores/scoreSlice';
-
+import {setTimerActive} from '../../../features/timer/timerSlice';
 import BasicExample from '../navbar';
 import useControl from '../useControl';
 import ScoreCard2 from '../../../app/features2/scores/ScoreCard';
@@ -59,6 +59,7 @@ export default function RugbyControl() {
       dispatch(resetInfo())
       dispatch(resetAll())
       dispatch(resetTime())
+      dispatch(setTimerActive(false))
     }
   }, [])
   const [page, setpage]=useState('1')
@@ -67,47 +68,64 @@ export default function RugbyControl() {
 
   return (
     <div className="scoreboardrugby">
-       <div className='topvol bg-success'>
-                    <BasicExample color='success' scoreboardId={scoreboardId}/>
-                    <PelotaRugby fill='#37a572' className='svg-top'/>
-                    <h1 className='titulotop'>Rugby</h1>
+       <div className='topvol bg-verde'>
+                    <BasicExample color='verde' titulo='Rugby' SvgTop={<PelotaRugby fill='#69c16f'  className='svg svg-nav position-absolute'/>}  scoreboardId={scoreboardId}/>
+                    <PelotaRugby fill='#69c16f' className='svg-top'/>
+                    <h1 className='titulorug'>Rugby</h1>
                     <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
                     dispatch(resetInfo());
                     dispatch(resetAll());
-                    dispatch(resetTime());}:null}>Reset </button>
+                    dispatch(resetTime());
+                    dispatch(setTimerActive(false));}:null}>Reset </button>
                 </div>
-      <div className="scoreboard-rugby">
+      <div className={page==='2'?'scoreboard-rugby-2':"scoreboard-rugby"}>
 <form className="scoreboardform-rugby form-group">
+          
+          {page==='1'?
           <div className="equiposrug">
-            <div className='logo-equipo'>
+          <div className='logo-equipo'>
+          Logo equipo
             </div>
             <div className="card-body-rug">
-              {page==='1'?<input
+              <input
                 type="text"
                 className="equipo form-control"
                 placeholder={team1}
                 value={team1}
                 id="team1"
                 aria-label="Team1"
-                onChange={inputChanged} />:team1}
-            </div>
-          </div>
-          <div className="equiposrug">
+                onChange={inputChanged} ></input>
+                </div></div>:
+                <div className="equiposrug2 text-center">
+                  {team1}
+                  <div className='logo-equipo'>
+                    Logo equipo
+                  </div>
+                </div>}
             
-
-            <div className='logo-equipo'>
-            </div>
-            <div className="card-body-rug">
-              {page==='1'?<input
-                type="text"
-                className="equipo form-control"
-                placeholder={team2}
-                value={team2}
-                id="team2"
-                aria-label="Team2"
-                onChange={inputChanged} />:team2}
-            </div>
-          </div>
+          
+                {page==='1'?
+                <div className="equiposrug">
+                  <div className='logo-equipo'>
+                Logo equipo
+                  </div>
+                  <div className="card-body-rug">
+                    <input
+                      type="text"
+                      className="equipo form-control"
+                      placeholder={team2}
+                      value={team2}
+                      id="team1"
+                      aria-label="Team1"
+                      onChange={inputChanged} ></input>
+                  </div>
+                  </div>:
+                <div className="equiposrug2 text-center borderleft">
+                  {team2}
+                  <div className='logo-equipo'>
+                    Logo equipo
+                  </div>
+                </div>}
         </form>
        { page==='1'?
         <div className='rugpage1'><InfoCard
@@ -115,12 +133,16 @@ export default function RugbyControl() {
             info={period}
             incrementInfo={incrementPeriod}
             decrementInfo={decrementPeriod}
-            color='success'
+            color='verde'
           />
-          <Timer color='success' start='justify-content-start d-flex' control ascending/>
+          <Timer color='verde' start='justify-content-start d-flex' control ascending/>
           
           </div>:page==='2'?
           <div className='rugpage2'>
+            <div className="timer-rugby">
+          
+          <Timer show color='verde' titulo='Futbol' periodo={period} control ascending start='justify-content-start d-flex'/>
+        </div>
         <div className="scoreboard-puntos-rugby">
           
 
@@ -128,9 +150,9 @@ export default function RugbyControl() {
             <ScoreCard2
               score={homeScore}
               updateScore={updateScore}
-              points={[-2, -3,-5, 2, 3, 5]}
+              points={[+2, +3,+5, -2, -3, -5]}
               player={'home'}
-              color='success'
+              color='verde'
               ba={true}
             />
             <div className="card-header-rugby">
@@ -147,24 +169,22 @@ export default function RugbyControl() {
             <ScoreCard2
               score={awayScore}
               updateScore={updateScore}
-              points={[-2, -3, -5, 2, 3, 5]}
+              points={[+2, +3, +5, -2, -3, -5]}
               player={'away'}
-              color='success'
+              color='verde'
               ba={true}
+             
             />
           </div>
         </div>
 
-        <div className="timer-rugby">
-          
-          <Timer show color='success' periodo={period} control ascending start='justify-content-start d-flex'/>
-        </div>
+        
         </div>:null
 }
 
        
       </div>
-      <div className='navegacion'><Ajustes color={page==='1'?'#198754':'#8a8a8b'} onClick={pagina1}/><PelotaRugby fill={page==='2'?'#198754':'#8a8a8b'} onClick={pagina2}/></div>
+      <div className='navegacion-rugby'><Ajustes color={page==='1'?'#24b524':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes><PelotaRugby fill={page==='2'?'#24b524':'#8a8a8b'} onClick={pagina2}>Puntos</PelotaRugby></div>
 
     </div >
   );

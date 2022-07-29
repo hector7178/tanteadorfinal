@@ -157,6 +157,7 @@ export default function HandballControl() {
               points={[-1, 1]}
               player={'home'}
               color='primary'
+              crono='goles-con'
             />
           <div className="handballbo">
             <h5 className="handballfoul-titulo">Puntos</h5>
@@ -175,6 +176,7 @@ export default function HandballControl() {
               points={[-1, 1]}
               player={'away'}
               color='primary'
+              crono='goles-con'
               
             />
           </div>
