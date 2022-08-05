@@ -40,12 +40,22 @@ import {
     updateSetTotal,
     selectsetTotalHome,
     selectsetTotalAway,
+    selectSets,
+    selectSet,
+    updatetime,
+    timeGame,
+    selecttime,
+    selectPasttime,
+    setSaque,
+    selectSaque
+
     
 } from '../../../features/scores/scoreSlice';
 import useControl from '../useControl';
+import {setTimerActive} from '../../../features/timer/timerSlice';
 import ScoreCard2 from '../../../app/features2/scores/ScoreCard';
 import './tennis.css';
-import { resetTime } from '../../../features/timer/timerSlice';
+import { resetTime,selectTimerActive, } from '../../../features/timer/timerSlice';
 import Timer from '../../../features/timer/Timer';
 import ScoreCard from '../../../features/scores/ScoreCard';
 import ScoreSet from '../../../features/scores/Scoreset';
@@ -54,6 +64,7 @@ import BasicExample from '../navbar';
 import Silbato from '../basketballs/silbatosvg';
 import Svg3page from './3PagesSvg'
 import  Ajustes from '../football/footballsvg/ajustes';
+import { useInterval } from '../useInterval';
 
  export default function TennisControl() {
     const dispatch = useDispatch();
@@ -62,7 +73,8 @@ import  Ajustes from '../football/footballsvg/ajustes';
     const period = useSelector( selectPeriod);
     const homeScore = useSelector(selectHomeScore);
     const awayScore = useSelector(selectAwayScore);
-
+    const timerActive = useSelector(selectTimerActive);
+    const time = useSelector(selecttime);
     const setTotalHome = useSelector(selectsetTotalHome);
     const setTotalAway = useSelector(selectsetTotalAway);
 
@@ -86,6 +98,9 @@ import  Ajustes from '../football/footballsvg/ajustes';
 
     const team1 = useSelector(selectTeam1);
     const team2 = useSelector(selectTeam2);
+    const set =useSelector(selectSet);
+    const pastTime =useSelector(selectPasttime);
+    const saque =useSelector(selectSaque);
 
     const inputChanged = (event) => {
         const target = event.target;
@@ -97,6 +112,7 @@ import  Ajustes from '../football/footballsvg/ajustes';
             dispatch(setTeam2(value));
         }
     }
+   
 
     useEffect(() => {
         dispatch(updateScoreLimit(40));
@@ -134,7 +150,7 @@ const [modalShow, setModalShow] = useState(false);
     let p=Set.length;  
     const z=Object.entries(pastAwayGames)[p-1][0]
 
- console.log(Set);
+
     const [page, setpage]=useState('1')
     const pagina1= ()=> setpage('1');
     const pagina2= ()=> setpage('2');
@@ -144,74 +160,117 @@ const [modalShow, setModalShow] = useState(false);
    
     const select = (e) => hSelSet(e);
     
-  console.log(selset)
+ 
+   console.log(time)
+   
+  useInterval(() => {
+    if (timerActive) {
+      dispatch(updatetime(1));
+    } 
+  },60000);
 
     return (
         <div className="scoreboard-tennis">
-            <div className='top-tennis'><Tennis fill='#ff9f59' className='svg-tennis'/> <BasicExample scoreboardId={scoreboardId} color='orange'/><h1 className='titulos-tennis'>Tenis</h1></div>
+            <div className='top-tennis'>
+            <Tennis fill='#ff9f59' className='svg-tennis'/> 
+            <BasicExample color='naranja' titulo='Tenis' SvgTop={<Tennis fill='#ff9f59'  className='svg svg-nav position-absolute'/>}  scoreboardId={scoreboardId}/>
+                   
+            <h1 className='titulos-tennis'>Tenis</h1>
+            <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
+                    dispatch(resetInfo());
+                    dispatch(resetAll());
+                    dispatch(resetTime());
+                    dispatch(setTimerActive(false));}:null}>Reset </button>
+            </div>
             <div className="tennis">
             
                        
-               {page==='1'? <div className="pagina-ajustes-te">
+               {page==='1'?
+                <div className="pagina-ajustes-te">
                     <div className="set">
                         
                         <table className="tennis-sets">
                             <thead className="botton-set rounded-pill">
-                                <tr className='botton-set-list'>
-                                    {Set.map((entry,index)=> ( 
-                                    <th className='sets' key={index} scope="col">
+                                <tr className='botton-set-list rounded-pill'>
+                                        {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            
                                         <button
                                             type="button"
-                                            className="buttonsets rounded-pill"
-                                            onClick={()=> select(Object.entries(pastHomeGames)[index][0])}
-                                        >   <div className='tp-set'>
+                                            key={index} 
+                                            className={`buttonsets rounded-pill  ${set===index?'bg-naranja text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
                                             <h1 className='t-set'>Set{index+1}</h1>
-                                            <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-                                            </div>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
                                         </button>
-                                       
+                                                        
                                     </th>))}
                                 </tr> 
                             </thead >
                             
-                            <tbody className="jugadores-set">
-                                <tr className="jugador-1">
-                                    <th scope="row">{team1}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp t" key={index}>{Object.entries(pastHomeGames)[index][1]}</td>)}<td className="sp bt t">{setTotalHome}</td></th>
-                                </tr>
-                                <tr className="jugador-2">
-                                    <th scope="row">{team2}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp b" key={index}>{Object.entries(pastAwayGames)[index][1]}</td>)}<td className="sp bt b">{setTotalAway}</td></th>
-                                </tr>
-                            </tbody>
+                            
+                            <div className="jugadores-set">
+                               <div className="jugadores-set-name">
+                               <div className='name-set'>{page==='1'?
+                                    <div className="name">
+                                        <input
+                                            type="name"
+                                            className="nombres form-control"
+                                            placeholder={team1}
+                                            value={team1}
+                                            id="team1"
+                                            aria-label="Team1"
+                                            onChange={inputChanged} />
+                                           
+                                            </div> :
+                                            <h3 className='jugador-2'>{team1}</h3>
+                                  }
+                                   
+                                
+                                   {page==='1'? 
+                                   <div className="name">
+                                        <input
+                                            type="text"
+                                            className="nombres form-control"
+                                            placeholder={team2}
+                                            value={team2}
+                                            id="team2"
+                                            aria-label="Team2"
+                                            onChange={inputChanged} />
+                                    </div>
+                                    :
+                                    <h3 className='jugador-2'>{team2}</h3>}
+
+                                    </div>
+
+                                    <div className='SetEquipos'>
+                                    <div className='set-col'>{Set.map((entry,index) => 
+                                    
+                                     <div className='games-sets position-relative'>
+                                        <div className='position-absolute timegame'>{Object.entries(pastTime)[index][1]}</div>
+                                        <div className={`sp ${index===0?' t':null} ${set===index?'bg-naranja text-white':'bg-white'}`} key={index}>{Object.entries(pastHomeGames)[index][1]}</div>
+                                        <div className={`sp ${index===0?' b':null} ${set===index?'bg-naranja text-white':'bg-white'}`} key={index}>{Object.entries(pastAwayGames)[index][1]}</div>
+                                     </div>)} 
+                                     <div className='games-sets'>
+                                        <div className="sp bt tf">{setTotalHome}</div>
+                                        <div className="sp bt bf">{setTotalAway}</div>
+                                    </div>
+                                    </div>
+                                   
+                                    
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
                         </table>
                     </div>
-                    <form className="jugadores-t form-group">
-                    <div className="jugador1">
-                        <div className="name">
-                            <input
-                                type="name"
-                                className="nombres form-control"
-                                placeholder={team1}
-                                value={team1}
-                                id="team1"
-                                aria-label="Team1"
-                                onChange={inputChanged} />
-                        </div>
-                    </div>
-                    <div className="jugador2">
-                        <div className="name">
-                            <input
-                                type="text"
-                                className="nombres form-control"
-                                placeholder={team2}
-                                value={team2}
-                                id="team2"
-                                aria-label="Team2"
-                                onChange={inputChanged} />
-                        </div>
-                    </div>
-                </form>
+                    
                 <div className='cantidad-sets'>
                     
                     <div className='numero-de-set'>
@@ -231,21 +290,46 @@ const [modalShow, setModalShow] = useState(false);
                     </div>
                 </div>
                 <Timer color='orange' start='d-flex justify-content-start' control ascending />
-                </div>:page==='2'?
+                </div>
+            :page==='2'?
 
-<div className="scoreboard-page2-tennis">
+                <div className="scoreboard-page2-tennis">
 <div className="card-headerpages2-tennis">
-<div className='setbotton rounded-pill'><tr className='botton-set-list'>
-     {Set.map((entry,index)=> ( 
-        <th className='sets' key={index} scope="col">
-      <button type="button"  className="buttonsets rounded-pill" onClick={() => dispatch(updatePastGames(index+1))}>   <div className='tp-set'>
-            <h1 className='t-set'>Set{index+1}</h1>
-            <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-           </div>
-        </button></th>))}
- </tr></div> 
-<div className='nombres-segundap'><h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1></div>
-</div>
+
+
+                            <thead className="botton-set rounded-pill">
+                                <tr className='botton-set-list rounded-pill'>
+                                {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            {console.log(index)}
+                                        <button
+                                            type="button"
+                                            key={index} 
+                                            className={`buttonsets rounded-pill  ${set==index?'bg-naranja text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
+                                            <h1 className='t-set'>Set{index+1}</h1>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
+                                        </button>
+                                                        
+                                    </th>))}
+                                </tr> 
+                            </thead >
+                            
+                            <div className='nombres-segundap'>
+                                <h1 onClick={()=>dispatch(setSaque([1]))} className='name-player position-relative'>
+                                {saque===1?<Tennis  fill='#ff9f59' className='svgSaque position-absolute d-flex justify-self-center'/>:null}
+                                {team1}</h1>
+                                <h1 className='name-player' >|</h1>
+                                <h1 onClick={()=>dispatch(setSaque([2]))} className='name-player position-relative'>
+                                {saque===2?<Tennis fill='#ff9f59' className='position-absolute svgSaque d-flex justify-self-center'/>:null}
+                                {team2}</h1>
+                                </div>
+                                </div>
                 <div className="setactualizacion">
                             <ScoreCard
                                 
@@ -318,38 +402,93 @@ const [modalShow, setModalShow] = useState(false);
         color='orange'
     />
 </div>
-</div>
+                </div>
                     
-                    :page==='3'?
+            :page==='3'?
                 
 
                 <div className="scoreboard-3pag-tenis">
                     <div className="card-headerpages3-tennis">
-                        <div className='setbotton rounded-pill'>
-                            <tr className='botton-set-list'>
-                            {Set.map((entry,index)=> ( 
-                                <th className='sets' key={index} scope="col">
-                                <button type="button"  className="buttonsets rounded-pill" onClick={() => dispatch(updatePastGames(index+1))}>   <div className='tp-set'>
-                                <h1 className='t-set'>Set{index+1}</h1>
-                                <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-                                </div>
-                                </button>
-                                </th>))}
-                            </tr>
+                            <thead className="botton-set rounded-pill">
+                                <tr className='botton-set-list rounded-pill'>
+                                {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            {console.log(index)}
+                                        <button
+                                            type="button"
+                                            key={index} 
+                                            className={`buttonsets rounded-pill  ${set==index?'bg-naranja text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
+                                            <h1 className='t-set'>Set{index+1}</h1>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
+                                        </button>
+                                                        
+                                    </th>))}
+                                </tr> 
+                            </thead >
+                            <div className="jugadores-set">
+                            <div className="jugadores-set-name">
+                               <div className='name-set'>{page==='1'?
+                                    <div className="name">
+                                        <input
+                                            type="name"
+                                            className="nombres form-control"
+                                            placeholder={team1}
+                                            value={team1}
+                                            id="team1"
+                                            aria-label="Team1"
+                                            onChange={inputChanged} />
+                                           
+                                            </div> :
+                                            <h3 className='jugador-2'>{team1}</h3>
+                                  }
+                                   
+                                
+                                   {page==='1'? 
+                                   <div className="name">
+                                        <input
+                                            type="text"
+                                            className="nombres form-control"
+                                            placeholder={team2}
+                                            value={team2}
+                                            id="team2"
+                                            aria-label="Team2"
+                                            onChange={inputChanged} />
+                                    </div>
+                                    :
+                                    <h3 className='jugador-2'>{team2}</h3>}
+
+                                    </div>
+                                    <div className='SetEquipos'>
+                                    <div className='set-col'>{Set.map((entry,index) => 
+                                     <div className='games-sets'>
+                                        <div className={`sp ${index===0?' t':null} bg-white`} key={index}>{Object.entries(pastHomeGames)[index][1]}</div>
+                                        <div className={`sp ${index===0?' b':null} bg-white`} key={index}>{Object.entries(pastAwayGames)[index][1]}</div>
+                                     </div>)} 
+                                     <div className='games-sets'>
+                                        <div className="sp bt tf">{setTotalHome}</div>
+                                        <div className="sp bt bf">{setTotalAway}</div>
+                                    </div>
+                                    </div>
+                                   
+                                    
+                                    </div>
+                            </div>   
                         </div> 
-                        <tbody className="jugadores-set-3">
-                                <tr className="jugador-1">
-                                    <th className='text-center d-flex align-items-center' scope="row">{team1}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp t" key={index}>{Object.entries(pastHomeGames)[index][1]}</td>)}<td className="sp bt t">{setTotalHome}</td></th>
-                                </tr>
-                                <tr className="jugador-2">
-                                    <th className='text-center d-flex align-items-center'scope="row">{team2}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp b" key={index}>{Object.entries(pastAwayGames)[index][1]}</td>)}<td className="sp bt b">{setTotalAway}</td></th>
-                                </tr>
-                            </tbody>
-                    <div className='nombres-segundap'>
-                    <h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1>
-                    </div>
+                        <div className='nombres-segundap'>
+                                <h1 onClick={()=>dispatch(setSaque([1]))} className='name-player position-relative'>
+                                {saque===1?<Tennis  fill='#ff9f59' className='svgSaque position-absolute d-flex justify-self-center'/>:null}
+                                {team1}</h1>
+                                <h1 className='name-player' >|</h1>
+                                <h1 onClick={()=>dispatch(setSaque([2]))} className='name-player position-relative'>
+                                {saque===2?<Tennis fill='#ff9f59' className='position-absolute svgSaque d-flex justify-self-center'/>:null}
+                                {team2}</h1>
+                                </div>
                     </div>
 
                     
@@ -397,32 +536,45 @@ const [modalShow, setModalShow] = useState(false);
                     
                 </div>
                 
-                :page==='4'?
+            :page==='4'?
                 
 
                 <div className="tiebreak">
 
                     
-                    <table className="tennis-sets">
+                    <table className="tennis-sets-4">
                             <thead className="botton-set rounded-pill">
-                                <tr className='botton-set-list'>
-                                    {Set.map((entry,index)=> ( 
-                                    <th className='sets' key={index} scope="col">
+                                <tr className='botton-set-list rounded-pill'>
+                                {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            {console.log(index)}
                                         <button
                                             type="button"
-                                            className="buttonsets rounded-pill"
-                                            onClick={()=> select(Object.entries(pastHomeGames)[index][0])}
-                                        >   <div className='tp-set'>
+                                            key={index} 
+                                            className={`buttonsets rounded-pill  ${set==index?'bg-naranja text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
                                             <h1 className='t-set'>Set{index+1}</h1>
-                                            <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-                                            </div>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
                                         </button>
-                                       
+                                                        
                                     </th>))}
                                 </tr> 
                             </thead >
-                            <div className='nombres-segundap'><h1>{team1}</h1><h1>|</h1><h1>{team2}</h1></div>
-                                
+                            <div className='nombres-segundap'>
+                                <h1 onClick={()=>dispatch(setSaque([1]))} className='name-player position-relative'>
+                                {saque===1?<Tennis  fill='#ff9f59' className='svgSaque position-absolute d-flex justify-self-center'/>:null}
+                                {team1}</h1>
+                                <h1 className='name-player' >|</h1>
+                                <h1 onClick={()=>dispatch(setSaque([2]))} className='name-player position-relative'>
+                                {saque===2?<Tennis fill='#ff9f59' className='position-absolute svgSaque d-flex justify-self-center'/>:null}
+                                {team2}</h1>
+                                </div>
+
                             
                         </table>
                                         <div className='cantidadSet'>
@@ -440,7 +592,7 @@ const [modalShow, setModalShow] = useState(false);
                                             <div className='numero-de-set'>
                                                 
                                                 <div className='set-control'>
-                                                <button className='del-aggset rounded-pill' onClick={()=>dispatch(updateSetTotal([-1,'away']))}>-</button>
+                                                <button className='del-aggset  rounded-pill' onClick={()=>dispatch(updateSetTotal([-1,'away']))}>-</button>
                                                 <span className='nset'>{setTotalAway} </span>
                                                 <button className='del-aggset bg-orange rounded-pill text-white'onClick={()=>dispatch(updateSetTotal([1,'away']))}>+</button>
                                                 </div>
@@ -479,11 +631,14 @@ const [modalShow, setModalShow] = useState(false);
                         color='orange'
                         crono='goles-con'
                     />
-                </div></div>:'' }
-
+                </div>
+                <button onClick={() => {dispatch(setShowTieBreak());}} 
+                className='showtimebreak rounded-pill text-naranja border-naranja'>Mostrar TieBreak</button>
+                </div>:'' }
+                
                 
             </div>
-            <div className='navegacion-bas'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}>Game</Tennis><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}>Sets Total</Svg3page><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}>Tiebreak</Silbato></div>
+            <div className='navegacion-bas'><Ajustes color={page==='1'?'#ffa500':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes><Tennis height={'100%'} width={'100%'} fill={page==='2'?'#ffa500':'#8a8a8b'} onClick={pagina2}>Game</Tennis><Svg3page fill={page==='3'?'#ffa500':'#8a8a8b'} onClick={pagina3}>Sets </Svg3page><Silbato color={page==='4'?'#ffa500':'#8a8a8b'} onClick={pagina4}>Tiebreak</Silbato></div>
         </div>
     );
 }

@@ -4,7 +4,7 @@
     display: grid;
     grid-template-rows: 20% 70% 10%;
 }.top-pagina {
-    background-color: #ffc107;
+    background-color: #fd8631;
     position: relative;
     display: flex;
     justify-content: center;
@@ -67,4 +67,16 @@
     grid-template-columns: 50% 50%;
     justify-items: center;
 align-content: center;
+}.textsvg{
+   
+ font-size: 100%;
+ FONT-WEIGHT: 400;
+}.bg-naranja{
+    background-color:#fd8631!important;
+
+}.border-naranja{  
+    border: solid 1px #fd8631 !important;
+}.text-naranja{
+    color:  #fd8631
 }
+  

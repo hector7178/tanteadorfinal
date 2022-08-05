@@ -115,8 +115,8 @@ export default function RugbyControl() {
                       className="equipo form-control"
                       placeholder={team2}
                       value={team2}
-                      id="team1"
-                      aria-label="Team1"
+                      id="team2"
+                      aria-label="Team2"
                       onChange={inputChanged} ></input>
                   </div>
                   </div>:
@@ -134,6 +134,7 @@ export default function RugbyControl() {
             incrementInfo={incrementPeriod}
             decrementInfo={decrementPeriod}
             color='verde'
+           
           />
           <Timer color='verde' start='justify-content-start d-flex' control ascending/>
           

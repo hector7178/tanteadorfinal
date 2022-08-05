@@ -13,8 +13,12 @@
     width: 80%;
     height: 70%;
     border-radius: 50%;
-   
+    display: grid;
+    justify-content: center;
+    align-content: center;
     border: solid green;
+}.bgn-white{
+ background-color: white;
 }.btn-w{
     width:45px!important;
     height: 45px!important;
@@ -25,6 +29,13 @@
     border: solid 1px #39af42 !important;
 }.text-verde{
     color:  #39af42;
+}.bg-naranja{
+    background-color:#fd8631!important;
+
+}.border-naranja{  
+    border: solid 1px #fd8631 !important;
+}.text-naranja{
+    color:  #fd8631;
    
 }@media screen and (max-height:700px){
     span.goles-con {

@@ -53,6 +53,9 @@
     display: grid;
     grid-template-rows: 20% 80%;
     height: 100%;
+}.golest {
+    display: grid;
+    height: 100%;
 }.panel-goles {
     display: grid;
     grid-template-rows: 45% 55%;

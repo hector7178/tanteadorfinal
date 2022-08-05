@@ -128,8 +128,8 @@ export default function HandballControl() {
                       className="equipo form-control"
                       placeholder={team2}
                       value={team2}
-                      id="team1"
-                      aria-label="Team1"
+                      id="team2"
+                      aria-label="Team2"
                       onChange={inputChanged} ></input>
                   </div>
                   </div>:
@@ -155,6 +155,7 @@ export default function HandballControl() {
             decrementInfo={decrementPeriod}
             color='verde'
             h={true}
+            w='w-100'
             >
           
             <ExtraTime extraTime={[30,20,5]} color='verde' titulo='Duracion'/>
@@ -207,7 +208,7 @@ export default function HandballControl() {
             
           <div className="penales">
                 <InfoCard2 p2
-                color='verde'
+                color='verde' 
                   
                   info={homeFouls}
                   incrementInfo={incrementHomeFouls}

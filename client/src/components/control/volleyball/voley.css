@@ -49,7 +49,7 @@
     height: 100%;
     width: 50%;
 }.titulotop{
-    bottom: 2vh;
+    bottom: 2.8vh;
     position: absolute;
     font-size: 40px;
     color: white;
@@ -61,7 +61,7 @@
     border: none;
     font-size: 22px;
     right: 10px;
-    bottom: 2vh;
+    bottom: 2.88vh;
 }@media screen and (max-height:700px){
     .titulotop {
         font-size: 1.2em;

@@ -13,7 +13,8 @@ export default function InfoCard({
   color,
   children,
   halfTime,
-  h
+  h,w
+  
 }) {
   const dispatch = useDispatch();
  
@@ -38,9 +39,9 @@ export default function InfoCard({
       }
       {
         incrementInfo && decrementInfo ?
-          <div className="cardbody d-grid align-items-center">
+          <div className={`cardbody ${w} d-grid align-items-center`}>
             <div className={p2?"reloj-2":"reloj"}>
-              <button type="button" className={`buttonMasMenos-2 border-${color} text-${color}`} onClick={() => dispatch(decrementInfo())}><Dash width="100%" height="100%"/></button>
+              <button type="button" className={`buttonMasMenos-2 bg-white border-${color} text-${color}`} onClick={() => dispatch(decrementInfo())}><Dash width="100%" height="100%"/></button>
               <span className="crono">{info}</span>
               <button type="button" className={`buttonMasMenos-2 d-grid align-items-center textwhite  bg-${color} border-${color}`} onClick={() => dispatch(incrementInfo())}> <Plus fill='#ffffff' width="100%" height="100%"/></button>
             </div>

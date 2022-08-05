@@ -67,10 +67,10 @@ export default function TimerSinBotones({
             <span className="time" >{padNumber(minutes)}:{padNumber(seconds)}</span>
             <div className='btns-crono' >
               
-              <button type="button" className={`btn-crono border-${color} rounded-pill`} onClick={() => {
+              <button type="button" className={`btn-crono border-${color} bg-${color} text-white rounded-pill`} onClick={() => {
                 dispatch(setTimerActive(true));
                 half();}} >Iniciar</button>
-              <button type="button" className={`btn-crono border-${color}  rounded-pill`} onClick={() => dispatch(setTimerActive(false))} >Pausa</button>
+              <button type="button" className={`btn-crono border-${color} bg-white rounded-pill`} onClick={() => dispatch(setTimerActive(false))} >Pausa</button>
               
             </div>
             

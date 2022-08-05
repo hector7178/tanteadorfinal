@@ -6,7 +6,8 @@ export const timerSlice = createSlice({
         timerActive: false,
         minutes: 10,
         seconds: 0,
-        initialTime:0
+        initialTime:0,
+        
     },
     reducers: {
         incrementSeconds: (state, action) => {

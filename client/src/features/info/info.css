@@ -90,6 +90,13 @@ height:100%
     display: grid;
     align-items: center;
     height: 100%;
+}.bg-naranja{
+    background-color:#fd8631 !important;
+
+}.border-naranja{  
+    border: solid 1px #fd8631 !important;
+}.text-naranja{
+    color:  #fd8631;
 }@media screen and (max-height:600px){
     span.crono-infoextra {
     font-size: 45px;

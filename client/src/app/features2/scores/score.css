@@ -76,5 +76,10 @@
 		display: grid;
 		grid-template-rows: 40% 40%;
 		justify-items: center;
+	}.boton-score-circl {
+		border-radius: 50%;
+		border: solid 1px #ffc107;
+		width: 30px;
+		height: 30px;
 	}
 }

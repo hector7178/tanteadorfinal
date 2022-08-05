@@ -1,5 +1,6 @@
 import { useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {Plus, Dash} from 'react-bootstrap-icons';
 import {
     selectTeam1,
     selectTeam2,
@@ -10,6 +11,13 @@ import {
     selectShowTimer
 } from '../../../features/info/infoSlice';
 import {
+    selectSets,
+    selectSet,
+    updatetime,
+    selectPasttime,
+    setSaque,
+    selecttime,
+    selectSaque,
     updateVolleyBallScore,
     updateVolleyBallGames,
     updateSets,
@@ -47,15 +55,19 @@ import ScoreCard from '../../../features/scores/ScoreCard';
 import PelotaVol  from './Svgvoley';
 import Ajustes from '../football/footballsvg/ajustes'
 import '../styles/ScoreBoard.scss';
-import { resetTime } from '../../../features/timer/timerSlice';
+import { resetTime, setTimerActive, selectTimerActive} from '../../../features/timer/timerSlice';
 import './voley.css';
+import { useInterval } from '../useInterval';
 
 export default function VolleyBallControl() {
     const dispatch = useDispatch();
-
+    const timerActive = useSelector(selectTimerActive);
     const scoreboardId = useControl('Volleyball', true);
-
-     const setTotalHome = useSelector(selectsetTotalHome);
+    const time = useSelector(selecttime);
+    const set =useSelector(selectSet);
+    const pastTime =useSelector(selectPasttime);
+    const saque =useSelector(selectSaque);
+    const setTotalHome = useSelector(selectsetTotalHome);
     const setTotalAway = useSelector(selectsetTotalAway);
 
     const homeScore = useSelector(selectHomeScore);
@@ -123,7 +135,15 @@ export default function VolleyBallControl() {
             return newlist
         })
     }   
+   
     const [selset, hSelSet]=useState('');
+   
+    const select = (e) => hSelSet(e);
+    useInterval(() => {
+        if (timerActive) {
+          dispatch(updatetime(1));
+        } 
+      },60000);
    
     
 console.log(selset)
@@ -131,83 +151,108 @@ console.log(selset)
         <div className="scoreboard-page-volleyball">
             <div className="scoreboard-volleyball">
                 <div className='topvol bg-primary'>
-                    <BasicExample color='primary' scoreboardId={scoreboardId}/>
+                    <BasicExample color='primary' titulo='Tenis' SvgTop={<PelotaVol fill='#3c86f5'  className='svg svg-nav position-absolute ' scoreboardId={scoreboardId} />} />
                     <PelotaVol fill='#3c86f5' className='svg-top'/>
                     <h1 className='titulotop'>Volleyball</h1>
                     <button className='btn-volreset' onClick={ ()=>{
                     dispatch(resetInfo());
                     dispatch(resetAll());
-                    dispatch(resetTime());}}>Reset </button>
+                    dispatch(resetTime());
+                    dispatch(setTimerActive(false));}}>Reset </button>
                 </div>
             {page==='1'? <div className="pagina-ajustes-te">
-                    <div className="set">
+            <div className="set">
                         
                         <table className="tennis-sets">
-                            <thead className="botton-set rounded-pill">
-                                <tr className='botton-set-list'>
-                                    {Set.map((entry,index)=> ( 
-                                    <th className='sets' key={index} scope="col">
+                        <thead className="botton-set rounded-pill">
+                                <tr className='botton-set-list rounded-pill'>
+                                        {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            
                                         <button
                                             type="button"
-                                            
-                                            className={`buttonsets-vol rounded-pill ${Object.entries(pastHomeGames)[index][0]===selset?'bg-primary text-white':null}`}
-                                            onClick={()=> hSelSet(Object.entries(pastHomeGames)[index][0])}
-                                        >   <div className='tp-set'>
+                                            key={index} 
+                                            className={`buttonsets rounded-pill border-primary ${set===index?'bg-primary text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
                                             <h1 className='t-set'>Set{index+1}</h1>
-                                            <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-                                            </div>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
                                         </button>
-                                       
+                                                        
                                     </th>))}
                                 </tr> 
                             </thead >
                             
-                            <tbody className="jugadores-set">
-                                <tr className="jugador-1">
-                                    <th scope="row">{team1}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp-vol t" key={index}>{Object.entries(pastHomeGames)[index][1]}</td>)}<td className="sp-vol bt t">{homeGames}</td></th>
-                                </tr>
-                                <tr className="jugador-2">
-                                    <th scope="row">{team2}</th>
-                                    <th className='set-col'>{Set.map((entry,index) =>  <td className="sp-vol b" key={index}>{Object.entries(pastAwayGames)[index][1]}</td>)}<td className="sp-vol bt b">{awayGames}</td></th>
-                                </tr>
-                            </tbody>
+                            
+                            <div className="jugadores-set">
+                               <div className="jugadores-set-name">
+                               <div className='name-set'>{page==='1'?
+                                    <div className="name">
+                                        <input
+                                            type="name"
+                                            className="nombres form-control"
+                                            placeholder={team1}
+                                            value={team1}
+                                            id="team1"
+                                            aria-label="Team1"
+                                            onChange={inputChanged} />
+                                           
+                                            </div> :
+                                            <h3 className='jugador-2'>{team1}</h3>
+                                  }
+                                   
+                                
+                                   {page==='1'? 
+                                   <div className="name">
+                                        <input
+                                            type="text"
+                                            className="nombres form-control"
+                                            placeholder={team2}
+                                            value={team2}
+                                            id="team2"
+                                            aria-label="Team2"
+                                            onChange={inputChanged} />
+                                    </div>
+                                    :
+                                    <h3 className='jugador-2'>{team2}</h3>}
+
+                                    </div>
+
+                                    <div className='SetEquipos'>
+                                    <div className='set-col'>{Set.map((entry,index) => 
+                                    
+                                    <div className='games-sets position-relative'>
+                                       <div className='position-absolute timegame'>{Object.entries(pastTime)[index][1]}</div>
+                                       <div className={`sp border-primary ${index===0?' t':null} ${set===index?'bg-primary text-white':'bg-white'}`} key={index}>{Object.entries(pastHomeGames)[index][1]}</div>
+                                       <div className={`sp border-primary ${index===0?' b':null} ${set===index?'bg-primary text-white':'bg-white'}`} key={index}>{Object.entries(pastAwayGames)[index][1]}</div>
+                                    </div>)} 
+                                    <div className='games-sets'>
+                                       <div className="sp bt tf">{homeGames }</div>
+                                       <div className="sp bt bf">{awayGames }</div>
+                                   </div>
+                                   </div>
+                                   
+                                    
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
                         </table>
                     </div>
-                    <form className="jugadores-t form-group">
-                    <div className="jugador1">
-                        <div className="name">
-                            <input
-                                type="name"
-                                className="nombres form-control"
-                                placeholder={team1}
-                                value={team1}
-                                id="team1"
-                                aria-label="Team1"
-                                onChange={inputChanged} />
-                        </div>
-                    </div>
-                    <div className="jugador2">
-                        <div className="name">
-                            <input
-                                type="text"
-                                className="nombres form-control"
-                                placeholder={team2}
-                                value={team2}
-                                id="team2"
-                                aria-label="Team2"
-                                onChange={inputChanged} />
-                        </div>
-                    </div>
-                </form>
+                    
                 <div className='cantidad-sets-vol'>
                     
                     <div className='numero-de-set'>
                         <h1 className='titulo-set'>Cantidad de sets</h1>
                         <div className='set-control'>
-                        <button className='del-aggset-vol' onClick={delSet}>-</button>
+                        <button className='del-aggset-vol' onClick={delSet}><Dash width="100%" height="100%"/></button>
                         <span className='nset'>{Set.length} </span>
-                        <button className='del-aggset-vol bg-primary  text-white'onClick={Set.length < 5?()=>{ newSet(`${Set.length}`)}:null}>+</button>
+                        <button className='del-aggset-vol bg-primary  text-white'onClick={Set.length < 5?()=>{ newSet(`${Set.length}`)}:null}><Plus fill='#ffffff' width="100%" height="100%"/></button>
                         </div>
                     </div>
                     
@@ -217,17 +262,39 @@ console.log(selset)
 
 <div className="scoreboard-page2-tennis">
 <div className="card-headerpages2-tennis">
-<div className='setbotton rounded-pill'><tr className='botton-set-list'>
-     {Set.map((entry,index)=> ( 
-        <th className='sets' key={index} scope="col">
-      <button type="button"  className={`buttonsets-vol rounded-pill ${Object.entries(pastHomeGames)[index][0]===selset?'bg-primary text-white':null}`} onClick={() =>hSelSet(Object.entries(pastHomeGames)[index][0])}>   <div className='tp-set'>
-            <h1 className='t-set'>Set{index+1}</h1>
-            <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1>:<h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
-           </div>
-        </button></th>))}
- </tr></div> 
-<div className='nombres-segundap'><h1 className='name-player'>{team1}</h1><h1>|</h1><h1 className='name-player'>{team2}</h1></div>
-</div>
+                            <thead className="botton-set rounded-pill">
+                                <tr className='botton-set-list rounded-pill'>
+                                        {Set.map((entry,index)=> ( 
+                                        <th className={`sets `} key={index} scope="col">
+                                            
+                                        <button
+                                            type="button"
+                                            key={index} 
+                                            className={`buttonsets rounded-pill border-primary ${set===index?'bg-primary text-white':'pobre'}`}
+                                            onClick={()=> {
+                                                select(Object.entries(pastHomeGames)[index][0]);
+                                                dispatch(selectSets(`${index }`));
+                                                }}>   <div className={``}>
+                                            <h1 className='t-set'>Set{index+1}</h1>
+
+                                        <div className='f-p k'><h1 className='f-p'>{Object.entries(pastHomeGames)[index][1]}</h1><h1 className='f-p'>|</h1><h1 className='f-p'>{Object.entries(pastAwayGames)[index][1]}</h1></div>
+                                        </div>
+                                        </button>
+                                                        
+                                    </th>))}
+                                </tr> 
+                            </thead >
+
+                            <div className='nombres-segundap'>
+                                <h1 onClick={()=>dispatch(setSaque([1]))} className='name-player position-relative'>
+                                {saque===1?<PelotaVol fill='#0d6efd' className='svgSaque position-absolute d-flex justify-self-center'/>:null}
+                                {team1}</h1>
+                                <h1 className='name-player' >|</h1>
+                                <h1 onClick={()=>dispatch(setSaque([2]))} className='name-player position-relative'>
+                                {saque===2?<PelotaVol fill='#0d6efd' className='position-absolute svgSaque d-flex justify-self-center'/>:null}
+                                {team2}</h1>
+                                </div>
+                                </div>
                 <div className="setactualizacion">
                             <ScoreCard
                                 

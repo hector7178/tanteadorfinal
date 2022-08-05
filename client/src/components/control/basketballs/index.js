@@ -24,6 +24,8 @@ import {
   resetScores,
   resetAll,
 } from '../../../features/scores/scoreSlice';
+import ScoreCardB from '../../../app/features2/scores/ScoreCard';
+import '../styles/SvgStyles.css'
 import useControl from '../useControl';
 import ScoreCard from '../../../features/scores/ScoreCard';
 import InfoCard from '../../../features/info/InfoCard';
@@ -38,6 +40,12 @@ import BasicExample from '../navbar'
 import Timer2 from '../../../app/features2/timer/Timer'
 import ScoreCard2 from '../../../app/features2/scores/ScoreCard'
 import Equipos from '../football/equipos';
+import InfoCard2 from '../../../features/info/InfoCardf';
+import {setTimerActive} from '../../../features/timer/timerSlice';
+import TimerSinBotones from '../../../features/timer/timersinbotones';
+import ExtraTime from '../../../features/timer/ExtraTime';
+
+import '../handball/handball.css';
 export default function BasketballControl() {
   const dispatch = useDispatch();
 
@@ -70,9 +78,10 @@ export default function BasketballControl() {
       dispatch(resetInfo())
       dispatch(resetAll())
       dispatch(resetTime())
+      dispatch(setTimerActive(false))
     }
   }, [])
-  const [pages, setPages]= useState('1' )
+  const [page, setPages]= useState('1' )
   const handlepage = () => setPages('1');
   const handlegoles= () => setPages('2');
   const handlepenales= () => setPages('3');
@@ -80,125 +89,172 @@ export default function BasketballControl() {
   return (
     <div className="scoreboard-basket">
       <div className='top-pagina'>
-        <Dribbble color='#ffd761' className='balon'/>
-        <h1 className='basket-text' >Basketball</h1>
-       <BasicExample  color='warning' scoreboardId={scoreboardId}/>
+        <Dribbble color='#f59753' className='svg-top'/>
+        <h1 className='titulotop' >Basketball</h1>
+       <BasicExample  color='naranja' titulo='Basketball' SvgTop={<Dribbble fill='#f59753'  className='svg svg-nav position-absolute'/>} scoreboardId={scoreboardId}/>
+       <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
+                    dispatch(resetInfo());
+                    dispatch(resetAll());
+                    dispatch(resetTime());
+                    dispatch(setTimerActive(false));}:null}>Reset </button>
       </div>
-      <div className="contenido-basket">
-        {pages==='1'?<Equipos team1={team1} page={pages} team2={team2} inputChanged={inputChanged} />:<div className='equipos-basket2 text-center'><div ClassNAme='equipo-a'><div className="logo-equipos"></div>{team1}</div><div className="equipo-b"><div className="logo-equipos"></div>{team2}</div></div>}
+      <div className="formhandball">
 
-       { pages==='1'?
-        <div className="pagina-ajustes">
-          <InfoCard  color='warning'
-            title="Tiempo"
-            info={period}
-            incrementInfo={incrementPeriod}
-            decrementInfo={decrementPeriod}>
-                   
-          </InfoCard>
-          <Timer
-          color='warning'
-          start='justify-content-start'
-            control
-            extraTime={[12, 10, 5]}
+<form className="scoreboardform-rugby form-group">
+{page==='1'?
+    <div className="equiposrug">
+    <div className='logo-equipo'>
+    Logo equipo
+      </div>
+      <div className="card-body-rug">
+        <input
+          type="text"
+          className="equipo form-control"
+          placeholder={team1}
+          value={team1}
+          id="team1"
+          aria-label="Team1"
+          onChange={inputChanged} ></input>
+          </div></div>:
+          <div className="equiposrug2 text-center">
+            {team1}
+            <div className='logo-equipo'>
+              Logo equipo
+            </div>
+          </div>}
+      
+    
+          {page==='1'?
+          <div className="equiposrug">
+            <div className='logo-equipo'>
+          Logo equipo
+            </div>
+            <div className="card-body-rug">
+              <input
+                type="text"
+                className="equipo form-control"
+                placeholder={team2}
+                value={team2}
+                id="team1"
+                aria-label="Team1"
+                onChange={inputChanged} ></input>
+            </div>
+            </div>:
+          <div className="equiposrug2 text-center borderleft">
+            {team2}
+            <div className='logo-equipo'>
+              Logo equipo
+            </div>
+          </div>}
+  </form>
+
+   <div className="page-handball">
+
+   {
+    page==='1'?
+    <div className="hanball-ajustes">
+    
+   
+    <InfoCard
+      title="Tiempo"
+      info={period}
+      incrementInfo={incrementPeriod}
+      decrementInfo={decrementPeriod}
+      color='naranja'
+      h={true}
+      >
+    
+      <ExtraTime extraTime={[30,20,5]} color='naranja' titulo='Duracion'/>
+      </InfoCard>
+    
+    <Timer
+      control
+      color='naranja'
+      start='justify-content-start d-flex'
+    />
+  </div>:page==='2'?
+  
+  <div className="handball-fouls">
+    <TimerSinBotones show periodo={period} color='naranja' start='justify-content-start d-flex'/>
+    <div className="handball-puntos">
+      <ScoreCardB
+        score={homeScore}
+        updateScore={updateScore}
+        points={[+1,+2,+3,-1,-2,-3]}
+        player={'home'}
+        color='naranja'
+        crono='goles-con'
+      />
+    <div className="penales-panel">
+      <h5 className="text-sub">Puntos</h5>
+      <button
+        type="button"
+        className="botton-reset-p rounded-pill"
+        onClick={()=> window.confirm('seguro?')?() => dispatch(resetScores()):null}
+      >
+        Reset
+      </button>
+
+    </div>
+      <ScoreCardB
+        score={awayScore}
+        updateScore={updateScore}
+        points={[+1,+2,+3,-1,-2,-3]}
+        player={'away'}
+        color='naranja'
+        crono='goles-con'
+        
+      />
+    </div>
+    
+  </div>:page==='3'?
+    <div className="handball-fouls">
+      <TimerSinBotones show periodo={period} color='naranja' start='justify-content-start d-flex'/>
+   
+      
+    <div className="penales">
+          <InfoCard2 p2
+          color='naranja'
+            
+            info={homeFouls}
+            incrementInfo={incrementHomeFouls}
+            decrementInfo={decrementHomeFouls}
           />
-        </div>: pages==='2'?
-        <div className="pagina-puntos">
-        <div className="pag_2">
-        <Timer2
-        p2
-        color='warning'
-        control>
-          <InfoCard   
-            p2 
-            color='warning'
-            info={period}
-            incrementInfo={incrementPeriod}
-            decrementInfo={decrementPeriod}>
-                   
-          </InfoCard>
-
-        </Timer2>
-
-        </div>
-
-        <div className="puntos-bask">
-          <ScoreCard2
-            color='warning'
-            score={homeScore}
-            updateScore={updateScore}
-            points={[+1, +2,+3,-1,-2,-3]}
-            player={'home'}
-            ba={true}
-          />
-           <div className='botonreset'>
-            <h5 className="col-sm-12 col-md-12 text-center">Puntos</h5>
+          <div className="penales-panel">
+          <h5 className="text-sub">Fouls</h5>
+          
+          
           <button
             type="button"
-            className=" rounded-pill button-reset "
-            onClick={() => dispatch(resetScores())}
+            className="botton-reset-p rounded-pill"
+            onClick={()=> window.confirm('seguro?')?() => dispatch(resetFouls()):null}
           >
             Reset
-          </button></div>
-          <ScoreCard2
-            color='warning'
-            score={awayScore}
-            updateScore={updateScore}
-            points={[+1, +2,+3,-1,-2,-3]}
-            player={'away'}
-            ba={true}
+          </button>
+          </div>
+          <InfoCard2 
+            p2
+            color='naranja'
+           
+            info={awayFouls}
+            incrementInfo={incrementAwayFouls}
+            decrementInfo={decrementAwayFouls}
           />
         </div>
+    
       </div>
-        :pages==='3'?
-        <div className="pagina-foul">
-          <Timer start='justify-content-start' color='warning'/>          
-          <div className="fouls">
-            <InfoCard
-            color='warning'
-              title="Local"
-              info={homeFouls}
-              incrementInfo={incrementHomeFouls}
-              decrementInfo={decrementHomeFouls}
-            /><div className="reset">
-            <h5 className="col-sm-12 col-md-12 text-center">Fouls</h5>
-            <button
-              type="button"
-              className="btn-sm col-xs-2 rounded-pill col-md-1 btn btn-danger"
-              onClick={() => dispatch(resetFouls())}
-            >
-              Reset
-            </button>
-          </div>
-            <InfoCard
-            color='warning'
-              title="Visitante"
-              info={awayFouls}
-              incrementInfo={incrementAwayFouls}
-              decrementInfo={decrementAwayFouls}
-            />
-          </div>
-        </div>
-        :
-        <div className="pagina-ajustes">
-          <InfoCard
-            title="Periodo"
-            info={period}
-            incrementInfo={incrementPeriod}
-            decrementInfo={decrementPeriod}
-          />
-          <Timer
-            control
-            extraTime={[12, 10, 5]}
-          />
-        </div> }
+    :null
+  
+  
+
+}  </div>
 
 
         
 
        
          </div>
-         <div className='navegacion' ><Ajustes color={pages==='1'?'#ffc107':'#8a8a8b'} onClick={handlepage}/><Dribbble height={'100%'} width={'100%'} fill={pages==='2'?'#ffc107':'#8a8a8b'} onClick={handlegoles}/><Silbato color={pages==='3'?'#ffc107':'#8a8a8b'} onClick={handlepenales}/></div>
+         <div className='navegacion' ><Ajustes color={page==='1'?'#f3a36a':'#8a8a8b'} onClick={handlepage}>Ajusts</Ajustes><div className='ajustes d-grid'><Dribbble  height={'100%'} width={'100%'} fill={page==='2'?'#f3a36a':'#8a8a8b'} onClick={handlegoles}></Dribbble><h1 className='textsvg'>Puntos</h1></div><Silbato color={page==='3'?'#f3a36a':'#8a8a8b'} onClick={handlepenales}>Fouls</Silbato></div>
        
       </div>
    

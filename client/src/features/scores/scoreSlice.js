@@ -24,15 +24,39 @@ export const scoreSlice = createSlice({
         setTotalHome:0,
         setTotalAway:0,
         volleyballHome:0,
-        volleyballAway:0
+        volleyballAway:0,
+        selectSet:'',
+        pastTime: { set1: 0, set2: 0, set3: 0, set4: 0, set5: 0 },
+        time:0,
+        saque:1,
+       
     },
     reducers: {
         setShowTieBreak: state => {
             state.showTieBreak = !state.showTieBreak;
+       
+        },
+        updatetime: (state, action) => {
+            let next = state.time + action.payload;
+            
+
+            state.time = next;
+        },
+        timeGame: (state, action,sc) => {
+            
+            
+            let updatedTime = {[`set${sc}`]: state.time  };
+            state.pastTime = { ...state.pastTime, ...updatedTime};
+        },
+        setSaque: (state, action) => {
+            const [saques]=action.payload;
+            
+            state.saque=+saques;
         },
         updateScoreLimit: (state, action) => {
             state.scoreLimit = action.payload;
         },
+        
         updateTieBreakLimit: (state, action) => {
             state.tieBreakLimit = action.payload;
             
@@ -65,6 +89,18 @@ export const scoreSlice = createSlice({
         updateGameNumber: (state, action) => {
             state.gameNumber = action.payload;
         },
+        selectSets: (state, action) => {
+            const [sets] = action.payload;
+            
+           state.selectSet= Number(sets);
+
+           if(window.confirm('deseas editar los valores del set?')){
+           state.homeGames = 0;
+            state.awayGames = 0;
+           }
+
+           
+        },
         updateScore: (state, action) => {
             const [points, player] = action.payload;
             var next;
@@ -92,6 +128,7 @@ export const scoreSlice = createSlice({
            
             const next=state.homeScore;
             const next2 = state.awayScore;
+           
             
             switch (player) {
                 case 'home':
@@ -138,14 +175,112 @@ export const scoreSlice = createSlice({
         },
         updateTennisScore: (state, action) => {
             const [points, player,setIndex] = action.payload;
+            const s= state.selectSet===''?`set${setIndex}`:`set${state.selectSet+1}`;
+            const sc=state.selectSet===''?setIndex:state.selectSet+1;
             
-            calculateScore(state, points, player,setIndex);
+            calculateScore(state, points, player,sc);
             
-            let updatedHome = { [`set${setIndex}`]: state.homeGames };
-            let updatedAway = { [`set${setIndex}`]: state.awayGames };
+           
+            
+            let updatedHome = {[s]: state.homeScore };
+            let updatedAway = { [s]: state.awayScore };
 
             state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
             state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };
+            let next = player === 'home' ?
+    state.pastHomeGames
+    :
+    state.pastAwayGames
+
+    let otherScore = player === 'home' ?
+    state.pastAwayGames
+    :
+    state.pastHomeGames;
+    
+    
+    if (next.set1>=5&&
+        next.set1 >= otherScore.set1 + 2&&s==='set1') {
+        state.homeGames = 0;
+        state.awayGames = 0;
+        
+        let updatedTime = {'set1': state.time  };
+        state.pastTime = { ...state.pastTime, ...updatedTime};
+        state.time =0;
+        state.selectSet=1;
+
+    if(next===state.pastHomeGames){ 
+    state.setTotalHome += 1
+     }else{ 
+    state.setTotalAway+= 1;
+    }
+    } 
+    
+    if (next.set2>=5&&
+        next.set2 >= otherScore.set2 + 2&&s==='set2') {
+        state.homeGames = 0;
+        state.awayGames = 0;
+        let updatedTime = {'set2': state.time  };
+        state.pastTime = { ...state.pastTime, ...updatedTime};
+        state.time =0;
+        state.selectSet=2;
+
+    if(next===state.pastHomeGames){ 
+    state.setTotalHome += 1
+     }else{ 
+    state.setTotalAway+= 1;
+    }
+    } 
+    
+    if (next.set3>=5&&
+        next.set3 >= otherScore.set3 + 2&&s==='set3') {
+        state.homeGames = 0;
+        state.awayGames = 0;
+        let updatedTime = {'set3': state.time  };
+        state.pastTime = { ...state.pastTime, ...updatedTime};
+        state.time =0;
+        state.selectSet=3;
+    if(next===state.pastHomeGames){ 
+    state.setTotalHome += 1
+     }else{ 
+    state.setTotalAway+= 1;
+    }
+    } 
+    
+    if (next.set4>=5&&
+        next.set4 >= otherScore.set4 + 2&&s==='set4') {
+        state.homeGames = 0;
+        state.awayGames = 0;
+        let updatedTime = {'set4': state.time  };
+        state.pastTime = { ...state.pastTime, ...updatedTime};
+        state.time =0;
+        state.selectSet=4;
+    if(next===state.pastHomeGames){ 
+    state.setTotalHome += 1
+     }else{ 
+    state.setTotalAway+= 1;
+    };
+    } 
+    
+    if (next.set5>=5&&
+        next.set5 >= otherScore.set5 + 2&&s==='set5') {
+        state.homeGames = 0;
+        state.awayGames = 0;
+        let updatedTime = {'set4': state.time  };
+        state.pastTime = { ...state.pastTime, ...updatedTime};
+        state.time =0;
+
+    if(next===state.pastHomeGames){ 
+    state.setTotalHome += 1
+     }else{ 
+    state.setTotalAway+= 1;
+    }
+    } 
+
+
+    if ((state.homeGames === state.gameNumber)
+        && (state.awayGames === state.gameNumber)) {
+        state.isTieBreak = true;
+    }
 
         },
         updateVolleyBallScore: (state, action) => {
@@ -155,16 +290,17 @@ export const scoreSlice = createSlice({
 
            
         },
+        
         updateGames: (state, action) => {
             const [points, player, setIndex] = action.payload;
         
-           
+            const s= state.selectSet===''?`set${setIndex}`:`set${state.selectSet+1}`;
 
 
             giveGame(state, player, points);
 
-            let updatedHome = { [`set${setIndex}`]: state.homeGames };
-            let updatedAway = { [`set${setIndex}`]: state.awayGames };
+            let updatedHome = { [s]: state.homeGames };
+            let updatedAway = { [s]: state.awayGames };
 
             state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
             state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };
@@ -173,18 +309,23 @@ export const scoreSlice = createSlice({
             state.pastHomeGames
             :
             state.pastAwayGames
-
+        
             let otherScore = player === 'home' ?
             state.pastAwayGames
             :
             state.pastHomeGames;
             
             
-            if (next.set1>5&&
-                next.set1 >= otherScore.set1 + 2) {
+            if (next.set1>=5&&
+                next.set1 >= otherScore.set1 + 2&&s==='set1') {
                 state.homeGames = 0;
                 state.awayGames = 0;
-
+                
+                let updatedTime = {'set1': state.time  };
+                state.pastTime = { ...state.pastTime, ...updatedTime};
+                state.time =0;
+                state.selectSet=1;
+        
             if(next===state.pastHomeGames){ 
             state.setTotalHome += 1
              }else{ 
@@ -192,11 +333,15 @@ export const scoreSlice = createSlice({
             }
             } 
             
-            if (next.set2>5&&
-                next.set2 >= otherScore.set2 + 2) {
+            if (next.set2>=5&&
+                next.set2 >= otherScore.set2 + 2&&s==='set2') {
                 state.homeGames = 0;
                 state.awayGames = 0;
-
+                let updatedTime = {'set2': state.time  };
+                state.pastTime = { ...state.pastTime, ...updatedTime};
+                state.time =0;
+                state.selectSet=2;
+        
             if(next===state.pastHomeGames){ 
             state.setTotalHome += 1
              }else{ 
@@ -204,11 +349,14 @@ export const scoreSlice = createSlice({
             }
             } 
             
-            if (next.set3>5&&
-                next.set3 >= otherScore.set3 + 2) {
+            if (next.set3>=5&&
+                next.set3 >= otherScore.set3 + 2&&s==='set3') {
                 state.homeGames = 0;
                 state.awayGames = 0;
-
+                let updatedTime = {'set3': state.time  };
+                state.pastTime = { ...state.pastTime, ...updatedTime};
+                state.time =0;
+                state.selectSet=3;
             if(next===state.pastHomeGames){ 
             state.setTotalHome += 1
              }else{ 
@@ -216,31 +364,37 @@ export const scoreSlice = createSlice({
             }
             } 
             
-            if (next.set4>5&&
-                next.set4 >= otherScore.set4 + 2) {
+            if (next.set4>=5&&
+                next.set4 >= otherScore.set4 + 2&&s==='set4') {
                 state.homeGames = 0;
                 state.awayGames = 0;
-
+                let updatedTime = {'set4': state.time  };
+                state.pastTime = { ...state.pastTime, ...updatedTime};
+                state.time =0;
+                state.selectSet=4;
             if(next===state.pastHomeGames){ 
             state.setTotalHome += 1
              }else{ 
             state.setTotalAway+= 1;
-            }
+            };
             } 
             
-            if (next.set5>5&&
-                next.set5 >= otherScore.set5 + 2) {
+            if (next.set5>=5&&
+                next.set5 >= otherScore.set5 + 2&&s==='set5') {
                 state.homeGames = 0;
                 state.awayGames = 0;
-
+                let updatedTime = {'set4': state.time  };
+                state.pastTime = { ...state.pastTime, ...updatedTime};
+                state.time =0;
+        
             if(next===state.pastHomeGames){ 
             state.setTotalHome += 1
              }else{ 
             state.setTotalAway+= 1;
             }
             } 
-
-
+        
+        
             if ((state.homeGames === state.gameNumber)
                 && (state.awayGames === state.gameNumber)) {
                 state.isTieBreak = true;
@@ -248,8 +402,15 @@ export const scoreSlice = createSlice({
         },
         updateVolleyBallGames: (state, action) => {
             const [points, player] = action.payload;
-
+            const s= `set${state.selectSet+1}`;
             giveGame(state, player, points);
+            
+
+            let updatedHome = { [s]: state.homeScore };
+            let updatedAway = { [s]: state.awayScore };
+
+            state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
+            state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };
 
             if (state.homeGames === (state.gameNumber - 1)
                 && state.awayGames === (state.gameNumber - 1)) {
@@ -329,6 +490,10 @@ export const scoreSlice = createSlice({
             state.advantage = '';
             state.deuce = false;
             state.isTieBreak = false;
+            state.setTotalHome=0;
+            state.setTotalAway=0;
+            state.pastTime= { set1: 0, set2: 0, set3: 0, set4: 0, set5: 0 };
+            state.time=0;
         },
         
     },
@@ -403,7 +568,10 @@ function giveGame(state, player, points) {
             state.homeGames += points
             :
             state.awayGames += points;
+
+            
     }
+    
 }
 
 function calculateVolleyballScore(state, points, player,setIndex) {
@@ -416,14 +584,24 @@ function calculateVolleyballScore(state, points, player,setIndex) {
         state.awayScore
         :
         state.homeScore;
-         
+    const s= state.selectSet===''?`set${setIndex}`: `set${state.selectSet+1}`;    
     if (next >= state.scoreLimit &&
+
         next >= otherScore + 2) {
-           
-            let updatedHome2 = { [`set${setIndex}`]: state.homeScore+1 };
-            let updatedAway2 = { [`set${setIndex}`]: state.awayScore+1};
-            state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome2 };
-            state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway2 };
+            player === 'home' ?
+
+       
+
+            
+            state.homeScore = next
+            :
+            state.awayScore = next;
+            let updatedHome = {[s]: state.homeScore }
+            let updatedAway = { [s]: state.awayScore}
+          
+
+            state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
+            state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };
 
            
         state.homeScore = 0;
@@ -443,8 +621,8 @@ function calculateVolleyballScore(state, points, player,setIndex) {
             state.homeScore = next
             :
             state.awayScore = next;
-            let updatedHome = { [`set${setIndex}`]: state.homeScore };
-            let updatedAway = { [`set${setIndex}`]: state.awayScore};
+            let updatedHome = {[s]: state.homeScore };
+            let updatedAway = { [s]: state.awayScore };
 
             state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
             state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };
@@ -454,10 +632,17 @@ function calculateVolleyballScore(state, points, player,setIndex) {
 
 }
 
-function calculateScore(state, points, player,setIndex) {
-    if (points === 'AD') {
-        state.advantage = player;
-    } else if (state.advantage !== '' && state.advantage === player) {
+function calculateScore(state, points, player,sc) {
+    let pp=player==='home'?
+                state.homeScore
+                :
+                state.awayScore
+    let sp=player==='home'?
+                state.awayScore
+                :
+                state.homeScore           
+          
+     if (pp>=40 && (sp>=40)!==(pp>=40)) {
         giveScoreWithAdvantage(state, player);
     } else if (state.advantage !== '' && state.advantage !== player) {
         setDeuce(state);
@@ -465,8 +650,10 @@ function calculateScore(state, points, player,setIndex) {
         state.deuce = false;
         state.advantage = player;
     } else {
-        giveScore(state, points, player,setIndex);
+        giveScore(state, points, player,sc);
     }
+
+    
 }
 
 function giveScoreWithAdvantage(state, player) {
@@ -485,12 +672,12 @@ function giveScoreWithAdvantage(state, player) {
 
 }
 
-function giveScore(state, points, player,setIndex) {
+function giveScore(state, points, player,sc) {
     let otherScore = player === 'home' ?
         state.awayScore
         :
         state.homeScore;
-    if (points >= state.scoreLimit && points === otherScore) {
+    if (points >= state.scoreLimit && points === otherScore&&state.deuce ===false) {
         state.deuce = true;
 
         player === 'home' ?
@@ -553,6 +740,10 @@ export const {
     resetTieBreak,
     resetAll,
     updateSetTotal,
+    selectSets,
+    updatetime,
+    timeGame,
+    setSaque
     
 } = scoreSlice.actions;
 
@@ -575,3 +766,7 @@ export const selectPastAwayGames = state => state.score.pastAwayGames;
 export const selectIsTieBreak = state => state.score.isTieBreak;
 export const selectsetTotalHome = state => state.score.setTotalHome;
 export const selectsetTotalAway = state => state.score.setTotalAway;
+export const selectSet= state => state.score.selectSet;
+export const selecttime= state => state.score.time;
+export const selectPasttime= state => state.score.pastTime;
+export const selectSaque= state => state.score.saque;

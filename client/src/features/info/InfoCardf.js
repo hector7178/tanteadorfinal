@@ -30,7 +30,7 @@ export default function InfoCard({
             <span className="crono-infoextra">{info}</span>
             
             <div className='info-btn'>
-              <button type="button" className={`buttonMasMenos-2 border-${color} text-${color}`} onClick={() => dispatch(decrementInfo())}><Dash width="100%" height="100%"/></button>
+              <button type="button" className={`buttonMasMenos-2  bg-white border-${color} text-${color}`} onClick={() => dispatch(decrementInfo())}><Dash width="100%" height="100%"/></button>
               
               <button type="button" className={`buttonMasMenos-2 d-grid align-items-center textwhite  bg-${color} border-${color}`} onClick={() => dispatch(incrementInfo())}> <Plus fill='#ffffff' width="100%" height="100%"/></button>
             </div>

@@ -134,7 +134,8 @@ export default function FootballControl() {
               info={extraTime}
               incrementInfo={incrementExtraTime}
               decrementInfo={decrementExtraTime}
-              extraTime/>
+              extraTime
+              w='w-100'/>
               <Timer color='verde' p2 control ascending sinbotones/>
               </div>
             <div className="scoreboard-goles">
@@ -184,7 +185,8 @@ export default function FootballControl() {
                 info={extraTime}
                 incrementInfo={incrementExtraTime}
                 decrementInfo={decrementExtraTime}
-                extraTime/>
+                extraTime
+                w='w-100'/>
                 </div>
               <div className="penales">
                 <InfoCard2 p2

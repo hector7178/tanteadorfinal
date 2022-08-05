@@ -23,7 +23,7 @@ const padNumber = (number) => number.toString().padStart(2, '0');
   );
 return(
     <div className='duracion'>
-       <h1 className='time-titulo'>{titulo}</h1> 
+       <h5 className='time-titulo'>{titulo}</h5> 
     <div className='extratime'>
     {extraTime.map((time, index) => timeButton(time, index))}
     </div>

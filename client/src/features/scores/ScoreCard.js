@@ -40,11 +40,11 @@ export default function ScoreCard(
 const a=[-1,1];
   return (
     <div className={
-      updateScore ?
-        "goles" :
+      updateScore ?title?'goles':
+        "golest" :
         "col-sm-12 col-md-6 bg-transparent card text-center"
     }>
-      <div className="card-header-goles">
+     {title? <div className="card-header-goles">
         <h5>{title}</h5>
         {
           server ?
@@ -58,7 +58,7 @@ const a=[-1,1];
               &nbsp;
             </div>
         }
-      </div>
+      </div>:null}
       {
         updateScore ?
           <div className="card-body-goles">

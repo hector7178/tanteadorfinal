@@ -3,7 +3,8 @@
     height: 40px;
     border-radius: 50%!important;
     margin: 0.5vh;
-  
+    display: inline-grid !important;
+    justify-content: center;
 }.reloj-fut{
     height: 100%;
 }.reloj-fut-grid {
@@ -150,6 +151,13 @@ h5{
     border: solid 1px #39af42 !important;
 }.text-verde{
     color:  #39af42;
+}.bg-naranja{
+    background-color:#fd8631!important;
+
+}.border-naranja{  
+    border: solid 1px #fd8631!important;
+}.text-naranja{
+    color:  #fd8631;
 }@media screen and (max-height:700px){
     span.time {
         font-size: 40px!important;

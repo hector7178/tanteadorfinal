@@ -1,5 +1,5 @@
 .aggt {
-    width: 40px!important;
+    width: 40px;
     height: 40px;
     border-radius: 50%!important;
    
@@ -116,5 +116,10 @@ border-radius: 40px;
     }.cronometro {
         display: grid;
         grid-template-rows: 30% 60%;
+    }.aggt {
+        width: 35px!important;
+        height: 35px;
+        border-radius: 50%!important;
+        margin: 0.5vh;
     }
 }
