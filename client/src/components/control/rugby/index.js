@@ -66,17 +66,22 @@ export default function RugbyControl() {
   const pagina1= ()=> setpage('1');
   const pagina2= ()=> setpage('2');
 
+  const btnresetall= () =>{
+    
+    if( window.confirm('seguro?')){
+    dispatch(resetInfo());
+    dispatch(resetAll());
+    dispatch(resetTime());
+    dispatch(setTimerActive(false));
+}}
+
   return (
     <div className="scoreboardrugby">
        <div className='topvol bg-verde'>
                     <BasicExample color='verde' titulo='Rugby' SvgTop={<PelotaRugby fill='#69c16f'  className='svg svg-nav position-absolute'/>}  scoreboardId={scoreboardId}/>
                     <PelotaRugby fill='#69c16f' className='svg-top'/>
                     <h1 className='titulorug'>Rugby</h1>
-                    <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());
-                    dispatch(setTimerActive(false));}:null}>Reset </button>
+                    <button className='btn-volreset' onClick={ btnresetall}>Reset </button>
                 </div>
       <div className={page==='2'?'scoreboard-rugby-2':"scoreboard-rugby"}>
 <form className="scoreboardform-rugby form-group">

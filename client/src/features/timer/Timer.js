@@ -21,6 +21,7 @@ export default function Timer({
   ascending,
   extraTime,
   sinbotones,
+  voley,
   p2,
   color,
   info,children,start,periodo,show
@@ -60,7 +61,7 @@ export default function Timer({
         
           <div className={p2?'reloj-fut-grid-2':sinbotones?'reloj-fut-grid-2':'reloj-fut-grid'}>
             <div className={p2?'crono-2':sinbotones?'crono-sin':"crono"} >
-            <h5 style={{fontSize:'2em'}}>{show?`T ${periodo}`:'Reloj'}</h5>
+            {voley?<h5> { `Tiempo set${voley}`} </h5>:<h5 style={{fontSize:'2em'}}>{show?`T ${periodo}`:'Reloj'}</h5>}
             </div>
             <div className={p2?"botones-reloj-2":sinbotones?"botones-reloj-sin":"botones-reloj"}>
             <span className="time" >{padNumber(minutes)}:{padNumber(seconds)}</span>

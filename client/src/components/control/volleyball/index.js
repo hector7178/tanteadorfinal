@@ -144,7 +144,14 @@ export default function VolleyBallControl() {
           dispatch(updatetime(1));
         } 
       },60000);
-   
+      const btnresetall= () =>{
+    
+        if( window.confirm('seguro?')){
+        dispatch(resetInfo());
+        dispatch(resetAll());
+        dispatch(resetTime());
+        dispatch(setTimerActive(false));
+    }}
     
 console.log(selset)
     return (
@@ -154,11 +161,7 @@ console.log(selset)
                     <BasicExample color='primary' titulo='Tenis' SvgTop={<PelotaVol fill='#3c86f5'  className='svg svg-nav position-absolute ' scoreboardId={scoreboardId} />} />
                     <PelotaVol fill='#3c86f5' className='svg-top'/>
                     <h1 className='titulotop'>Volleyball</h1>
-                    <button className='btn-volreset' onClick={ ()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());
-                    dispatch(setTimerActive(false));}}>Reset </button>
+                    <button className='btn-volreset' onClick={ btnresetall}>Reset </button>
                 </div>
             {page==='1'? <div className="pagina-ajustes-te">
             <div className="set">
@@ -257,7 +260,7 @@ console.log(selset)
                     </div>
                     
                 </div>
-                <Timer color='primary' start='d-flex justify-content-start' control ascending />
+                <Timer color='primary' voley={set+1} start='d-flex justify-content-start' control ascending />
                 </div>:page==='2'?
 
 <div className="scoreboard-page2-tennis">

@@ -25,6 +25,7 @@ import {
   resetAll,
 } from '../../../features/scores/scoreSlice';
 import useControl from '../useControl';
+import InfoCard2 from '../../../features/info/InfoCardf';
 import ScoreCard from '../../../features/scores/ScoreCard';
 import InfoCard from '../../../features/info/InfoCard';
 import Timer from '../../../features/timer/Timer';
@@ -35,7 +36,7 @@ import BasicExample from '../navbar';
 import Balon from '../football/footballsvg/balon';
 import Ajustes from '../football/footballsvg/ajustes';
 import Silbato from '../basketballs/silbatosvg';
-import { resetTime, updateInitialTime } from '../../../features/timer/timerSlice';
+import { resetTime, updateInitialTime,setTimerActive } from '../../../features/timer/timerSlice';
 import './handball.css';
 export default function HandballControl() {
   const dispatch = useDispatch();
@@ -75,23 +76,30 @@ export default function HandballControl() {
   const pagina1= ()=> setpage('1');
   const pagina2= ()=> setpage('2');
   const pagina3= ()=> setpage('3');
+
+  const btnresetall= () =>{
+    
+    if( window.confirm('seguro?')){
+    dispatch(resetInfo());
+    dispatch(resetAll());
+    dispatch(resetTime());
+    dispatch(setTimerActive(false));
+}}
   
   return (
     <div className="scoreboard-handball">
       <div className='topvol bg-primary'>
-                    <BasicExample color='primary' scoreboardId={scoreboardId}/>
-                    <Balon fill='#4283e3' className='svg-top'/>
+                    <BasicExample color='primary' titulo='Handball'  SvgTop={<Balon fill='#4283e3'  className='svg svg-nav position-absolute'/>} scoreboardId={scoreboardId}/>
+                    <Balon fill='#4283e3' className='svgHandball'/>
                     <h1 className='titulotop'>Handball</h1>
-                    <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());}:null}>Reset </button>
+                    <button className='btn-volreset' onClick={btnresetall}>Reset </button>
                 </div>
       <div className="formhandball">
 
       <form className="scoreboardform-rugby form-group">
           <div className="equiposrug">
             <div className='logo-equipo'>
+              Logo Equipo
             </div>
             <div className="card-body-rug">
               {page==='1'?<input
@@ -107,7 +115,7 @@ export default function HandballControl() {
           <div className="equiposrug">
             
 
-            <div className='logo-equipo'>
+            <div className='logo-equipo'>Logo Equipo
             </div>
             <div className="card-body-rug">
               {page==='1'?<input
@@ -163,8 +171,8 @@ export default function HandballControl() {
             <h5 className="handballfoul-titulo">Puntos</h5>
             <button
               type="button"
-              className="btn-sm col-xs-2 col-md-1 btn btn-danger"
-              onClick={() => dispatch(resetScores())}
+              className="btn-sm col-xs-2 col-md-1 btn btn-danger rounded-pill"
+              onClick={() =>window.confirm('seguro?') ?dispatch(resetScores()):null}
             >
               Reset
             </button>
@@ -187,8 +195,8 @@ export default function HandballControl() {
          
             
             <div className="handballfoul">
-          <div className= 'foulscount'><InfoCard
-              title="Local"
+          <div className= 'foulscount'><InfoCard2
+              
               info={homeFouls}
               incrementInfo={incrementHomeFouls}
               decrementInfo={decrementHomeFouls}
@@ -198,15 +206,15 @@ export default function HandballControl() {
             <h5 className="handballfoul-titulo">Fouls</h5>
             <button
               type="button"
-              className="btn-sm col-xs-2 col-md-1 btn btn-danger"
-              onClick={() => dispatch(resetFouls())}
+              className="btn-sm col-xs-2 col-md-1 btn btn-danger rounded-pill"
+              onClick={() => window.confirm('seguro?')? dispatch(resetFouls()):null}
             >
               Reset
             </button>
             </div>
-            <div className='foulscount'><InfoCard
+            <div className='foulscount'><InfoCard2
               p2
-              title="Visitante"
+             
               info={awayFouls}
               incrementInfo={incrementAwayFouls}
               decrementInfo={decrementAwayFouls}
@@ -224,7 +232,11 @@ export default function HandballControl() {
         
       </div>
 
-      <div className='navegacion'><Ajustes color={page==='1'?'#0d6efd':'#8a8a8b'} onClick={pagina1}/><Balon fill={page==='2'?'#0d6efd':'#8a8a8b'} onClick={pagina2}/><Silbato fill={page==='3'?'#0d6efd':'#8a8a8b'} onClick={pagina3}/></div>
+      <div className='navegacion'>
+        <Ajustes color={page==='1'?'#0d6efd':'#8a8a8b'} onClick={pagina1}>Ajustes</Ajustes>
+        <Balon fill={page==='2'?'#0d6efd':'#8a8a8b'} onClick={pagina2}>Goles</Balon>
+        <Silbato fill={page==='3'?'#0d6efd':'#8a8a8b'} onClick={pagina3}>Fouls</Silbato>
+        </div>
 
     </div >
   );

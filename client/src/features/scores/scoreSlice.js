@@ -182,8 +182,8 @@ export const scoreSlice = createSlice({
             
            
             
-            let updatedHome = {[s]: state.homeScore };
-            let updatedAway = { [s]: state.awayScore };
+            let updatedHome = {[s]: state.homeGames };
+            let updatedAway = { [s]: state.awayGames };
 
             state.pastHomeGames = { ...state.pastHomeGames, ...updatedHome };
             state.pastAwayGames = { ...state.pastAwayGames, ...updatedAway };

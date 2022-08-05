@@ -168,6 +168,15 @@ const [modalShow, setModalShow] = useState(false);
       dispatch(updatetime(1));
     } 
   },60000);
+const btnresetall= () =>{
+    
+    if( window.confirm('seguro?')){
+    dispatch(resetInfo());
+    dispatch(resetAll());
+    dispatch(resetTime());
+    dispatch(setTimerActive(false));
+}}
+  
 
     return (
         <div className="scoreboard-tennis">
@@ -176,11 +185,8 @@ const [modalShow, setModalShow] = useState(false);
             <BasicExample color='naranja' titulo='Tenis' SvgTop={<Tennis fill='#ff9f59'  className='svg svg-nav position-absolute'/>}  scoreboardId={scoreboardId}/>
                    
             <h1 className='titulos-tennis'>Tenis</h1>
-            <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());
-                    dispatch(setTimerActive(false));}:null}>Reset </button>
+            <button className='btn-volreset' onClick={
+                  btnresetall }>Reset </button>
             </div>
             <div className="tennis">
             

@@ -61,6 +61,14 @@
     height: 100%;
 
    
+}.svgHandball{
+   
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        justify-items: center;
+        top: -25%;
+    
 }@media screen and (max-height:700px){
     .formhandball {
         display: grid;
@@ -73,7 +81,7 @@
     
     }.foulscount {
         height: 70%;
-        justify-content: center;
+      
         display: grid;
     }
 }

@@ -79,17 +79,21 @@ export default function HandballControl() {
   const pagina2= ()=> setpage('2');
   const pagina3= ()=> setpage('3');
   
+  const btnresetall= () =>{
+    
+    if( window.confirm('seguro?')){
+    dispatch(resetInfo());
+    dispatch(resetAll());
+    dispatch(resetTime());
+    dispatch(setTimerActive(false));
+}}
   return (
     <div className="scoreboard-handball">
       <div className='topvol bg-verde'>
                     <BasicExample color='verde' titulo='Hockey' SvgTop={<HockeySvg fill='#69c16f'  className='svg svg-nav position-absolute'/>} scoreboardId={scoreboardId}/>
                     <HockeySvg  fill='#69cf71' className='svg-top'/>
                     <h1 className='titulotop'>Hockey</h1>
-                    <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());
-                    dispatch(setTimerActive(false));}:null}>Reset </button>
+                    <button className='btn-volreset' onClick={ btnresetall}>Reset </button>
                 </div>
       <div className="formhandball">
 

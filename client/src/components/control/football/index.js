@@ -85,7 +85,15 @@ export default function FootballControl() {
   const handlepage = () => setPages('1');
   const handlegoles= () => setPages('2');
   const handlepenales= () => setPages('3');
-   console.log(pages)
+  
+  const btnresetall= () =>{
+    
+    if( window.confirm('seguro?')){
+    dispatch(resetInfo());
+    dispatch(resetAll());
+    dispatch(resetTime());
+    dispatch(setTimerActive(false));
+}}
 
   return (
     <div className='pagina-futbol'>
@@ -94,11 +102,7 @@ export default function FootballControl() {
         < BasicExample color='verde'  titulo='Futbol' SvgTop={<Balon color='#69c16f'  className='svg svg-nav position-absolute'/>} scoreboardId={scoreboardId}/>
         <Balon color='#69c16f' className='svg position-absolute'/>
         <h1 className='texto'>Futbol</h1>
-        <button className='btn-volreset' onClick={ ()=> window.confirm('seguro?')?()=>{
-                    dispatch(resetInfo());
-                    dispatch(resetAll());
-                    dispatch(resetTime());
-                    dispatch(setTimerActive(false));}:null}>Reset </button>
+        <button className='btn-volreset' onClick={ btnresetall}>Reset </button>
                     </div>
       <div className='contenido'>
         
